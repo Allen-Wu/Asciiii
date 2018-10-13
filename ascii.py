@@ -4,6 +4,9 @@ import glob
 import os
 
 class ASCII:
+    """
+    array presentation of ascii characters
+    """
     _ascii_dict = {}
     _x = 0
     _y = 0

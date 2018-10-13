@@ -19,17 +19,19 @@ def main():
     # Parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_image', type=str, help='input image file path')
-    parser.add_argument('--line_number', type=int, default=100, help='number of output characters in one line')
+    parser.add_argument('--line_number', type=int, default=IMAGE_WIDTH, help='desired image width')
     args = parser.parse_args()
     args_dict = vars(args)
 
-    in_img = args_dict["input_image"]
+    im_path = args_dict["input_image"]
     line_number = args_dict['line_number']
 
     ascii_mapper = ASCII()
-    sketcher = Sketch(IMAGE_WIDTH)
+    sketcher = Sketch(line_number)
+    # process(sketcher, ascii_mapper, im_path, line_number)
 
     # Testing for the images in data folder
+
     for im_path in glob.glob('data/result800/*'):
         process(sketcher, ascii_mapper, im_path)
 
