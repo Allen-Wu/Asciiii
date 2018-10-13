@@ -27,7 +27,7 @@ def main():
     im_path = args_dict["input_image"]
     line_number = args_dict['line_number']
 
-    ascii_mapper = ASCII()
+    ascii_mapper = ASCII(0.2)
     sketcher = Sketch(line_number)
     # process(sketcher, ascii_mapper, im_path, line_number)
 

@@ -11,8 +11,9 @@ class ASCII:
     _x = 0
     _y = 0
 
-    def __init__(self):
+    def __init__(self, eta=0.2):
         self._construct_ascii_dict()
+        self.eta = eta
 
     def get_shape(self):
         return self._x, self._y
@@ -41,9 +42,9 @@ class ASCII:
 
     def hamming_match(self, measure_grid, gray_scale=True):
 
-        if measure_grid.mean() > 200:
+        if measure_grid.mean() > 255 * (1 - self.eta):
             return ord(' '), 0
-        if measure_grid.mean() < 50:
+        if measure_grid.mean() < 255 * self.eta:
             return ord('#'), 0
 
         id_max = 0
