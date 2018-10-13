@@ -1,6 +1,14 @@
 import numpy as np
 import os
 
+# Clear output screen
+def clear():
+    # For Windows
+    if os.name == 'nt':
+        _ = os.system('cls')
+    else:
+        _ = os.system('clear')
+
 # Padding zeros for input image to be right size
 def zero_padding(img_matrix, grid_row, grid_col):
     resize_row = img_matrix.shape[0]
@@ -14,6 +22,7 @@ def zero_padding(img_matrix, grid_row, grid_col):
     result[:img_matrix.shape[0], :img_matrix.shape[1]] = img_matrix
     return result
 
+# Transfer edge-detected image to ascii format
 def img_to_ascii(ascii_candidate, img_matrix):
     grid_row, grid_col = ascii_candidate.get_shape()
     output_row = int(img_matrix.shape[0] / grid_row)
@@ -33,7 +42,7 @@ def img_to_ascii(ascii_candidate, img_matrix):
         for y in x:
             output_string += y
         output_string += '\n'
-    os.system('clear')
+    clear()
     print(output_string)
 
 # # Only for testing
