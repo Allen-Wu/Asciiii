@@ -5,28 +5,28 @@ import os
 
 class ASCII:
     _ascii_dict = {}
-    x = 0
-    y = 0
+    _x = 0
+    _y = 0
 
     def __init__(self):
         self._construct_ascii_dict()
 
     def get_shape(self):
-        return self.x, self.y
+        return self._x, self._y
 
     def get_array(self, id):
         return self._ascii_dict[id]
 
     def _ascii_array(self, fname):
         im = imageio.imread(fname)
-        return 255 - im
+        return im
 
     def _construct_ascii_dict(self):
         for im_path in glob.glob('ascii/*.png'):
             bitmap = self._ascii_array(im_path)
             id = int(os.path.basename(im_path).split('.')[0])
             self._ascii_dict[id] = bitmap
-        self.x, self.y = self._ascii_dict[id].shape
+        self._x, self._y = self._ascii_dict[id].shape
 
     def _hamming_dis(self, a, b, gray_scale=False):
         if gray_scale == False:
