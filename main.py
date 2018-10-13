@@ -1,10 +1,10 @@
 import argparse
 import cv2
 import scipy.signal
+import glob
 import numpy as np
-from grid_matching import *
-from edge_detect import *
-from ascii import *
+from grid_matching import zero_padding, img_to_ascii
+from ascii import ASCII
 
 
 def main():
@@ -37,8 +37,6 @@ def main():
 
         # Canny edge detection
         edge_detected = cv2.Canny(in_img, 50, 100)
-
-        # save_img(in_img, edge_detected)
 
         # Matrix representations for ascii character
         ascii_candidates = ASCII()

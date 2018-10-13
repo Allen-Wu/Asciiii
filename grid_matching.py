@@ -36,24 +36,24 @@ def img_to_ascii(ascii_candidate, img_matrix):
     os.system('clear')
     print(output_string)
 
-# Only for testing
-def main():
-    # Test for zero padding
-    # Grid matrix
-    grid_candidate = np.random.rand(3, 2)
-    img_matrix = np.random.rand(7, 5)
-    print(img_matrix)
-    print(zero_padding(img_matrix, grid_candidate))
-    
-    # Test for Hamming Distance
-    grid_candidate = []
-    candidate_one = np.array([[1, 0, 1], [1, 0, 1], [1, 0, 1]])
-    candidate_two = np.array([[0, 1, 0], [0, 1, 0], [0, 0, 1]])
-    measure_grid = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-    grid_candidate.append(candidate_one)
-    grid_candidate.append(candidate_two)
-    print("Best index: ", hamming_grid_match(grid_candidate, measure_grid))
-    
-
-if __name__ == '__main__':
-    main()
+# # Only for testing
+# def main():
+#     # Test for zero padding
+#     # Grid matrix
+#     grid_candidate = np.random.rand(3, 2)
+#     img_matrix = np.random.rand(7, 5)
+#     print(img_matrix)
+#     print(zero_padding(img_matrix, grid_candidate))
+#
+#     # Test for Hamming Distance
+#     grid_candidate = []
+#     candidate_one = np.array([[1, 0, 1], [1, 0, 1], [1, 0, 1]])
+#     candidate_two = np.array([[0, 1, 0], [0, 1, 0], [0, 0, 1]])
+#     measure_grid = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+#     grid_candidate.append(candidate_one)
+#     grid_candidate.append(candidate_two)
+#     print("Best index: ", hamming_grid_match(grid_candidate, measure_grid))
+#
+#
+# if __name__ == '__main__':
+#     main()
