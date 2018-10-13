@@ -4,7 +4,7 @@ from grid_matching import zero_padding, img_to_ascii
 from edge_detect import Sketch
 from ascii import ASCII
 
-IMAGE_WIDTH = 500
+IMAGE_WIDTH = 800
 
 def process(sketcher, ascii_mapper, path):
     edged_image = sketcher.convert(path)
@@ -32,7 +32,7 @@ def main():
 
     # Testing for the images in data folder
 
-    for im_path in glob.glob('data/result800/*'):
+    for im_path in glob.glob('data/*.png'):
         process(sketcher, ascii_mapper, im_path)
 
 
