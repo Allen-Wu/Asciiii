@@ -40,6 +40,12 @@ class ASCII:
             return np.absolute(a - b).sum()
 
     def hamming_match(self, measure_grid, gray_scale=True):
+
+        if measure_grid.mean() > 200:
+            return ord(' '), 0
+        if measure_grid.mean() < 50:
+            return ord('#'), 0
+
         id_max = 0
         distance_min = 1e10
         for id in self._ascii_dict:

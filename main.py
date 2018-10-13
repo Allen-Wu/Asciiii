@@ -1,10 +1,11 @@
 import argparse
 import glob
+import time
 from grid_matching import zero_padding, img_to_ascii
 from edge_detect import Sketch
 from ascii import ASCII
 
-IMAGE_WIDTH = 800
+IMAGE_WIDTH = 1200
 
 def process(sketcher, ascii_mapper, path):
     edged_image = sketcher.convert(path)
@@ -30,11 +31,14 @@ def main():
     sketcher = Sketch(line_number)
     # process(sketcher, ascii_mapper, im_path, line_number)
 
-    # Testing for the images in data folder
+    start = time.time()
 
-    for im_path in glob.glob('data/*.png'):
+    # Testing for the images in data folder
+    for im_path in glob.glob('data/*.jpg'):
         process(sketcher, ascii_mapper, im_path)
 
+    end = time.time()
+    print(end - start)
 
 if __name__ == '__main__':
     main()
