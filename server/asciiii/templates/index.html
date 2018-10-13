@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>Asciiii - Ascii Style Converter</title>
-  <style>
+  <!-- <style>
   input[type=submit] {
       background-color: #2f2f2f;
       border: none;
@@ -25,42 +25,44 @@
       margin: 8px 0;
       box-sizing: border-box;
   }
-  </style>
-  <link rel="stylesheet" href="static/css/style.css">
-  <link rel="icon" href="/static/images/asciiii.ico" type="image/x-icon"/>
+  </style> -->
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="icon" href="../static/images/favicon.png" type="image/x-icon"/>
 </head>
 <body>
   <table>
 	<tr>
 		<td>
 		<h2>Asciiii - Ascii Style Converter</h2>
-		<form method="post" enctype="multipart/form-data" action="pic2ascii.cgi">
+		<form action="#" method="post" enctype="multipart/form-data">
 		<table cellspacing="8">
       <tr>
-          <td><label for="image">Image File: </label></td><td><input name="image" size="50" type="file"></td>
+          <td><label for="image">Image File: </label></td><td><input name="file" size="50" type="file"/></td>
       </tr>
       <tr>
-          <td><label for="width">Ascii Height: </label></td><td><input name="width" value="100" size="3" maxlength="3" type="text"> (1-500) lines</td>
+          <td><label for="width">Ascii Height: </label></td><td><input name="lines" value="100" size="3" maxlength="3" type="text"/></td>
       </tr>
       <tr>
           <td><label for="invert">Color: </label></td>
 			<td>
-  			<select name="invert" id="invert">
+  			<select name="color" id="color">
   				<option selected="selected" value="0">No</option>
   				<option value="1">Yes</option>
   			</select>
 			</td>
       </tr>
         <tr>
-            <td><br><input value="Submit" type="submit"></td>
+            <td><br><input value="Submit" type="submit"/></td>
         </tr>
         </table>
   		</form>
   		</td>
   	</tr>
   </table>
-  <img class="photo" src='/uploads/{{ filename }}' alt='{{ origin-filename }}'>
-  <img class="photo" src='/results/{{ filename }}' alt='{{ ascii-filename }}'>
+  {% if ifcontent %}
+    <img class="photo" src='{{ origin }}' alt='{{ origin }}'>
+    <img class="photo" src='{{ ascii }}' alt='{{ ascii }}'>
+  {% endif %}
 
 </body>
 

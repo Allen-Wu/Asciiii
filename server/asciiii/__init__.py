@@ -3,7 +3,7 @@
 import flask
 
 app = flask.Flask(__name__)
-app.config.from_object('config.config')
+app.config.from_object('asciiii.config')
 
 # Overlay settings read from file specified by environment variable. This is
 # useful for using different on development and production machines.
