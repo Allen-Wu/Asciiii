@@ -1,17 +1,18 @@
-import  os
+import os
 import numpy as np
 import cv2
 import imageio
 
-THRESHOLD_LOW = 220
-THRESHOLD_HIGH = 255
+# THRESHOLD_LOW = 220
+# THRESHOLD_HIGH = 255
+WIDTH = 500
 
 
-def NWG(path):
-    img_out = cv2.threshold(path, THRESHOLD_LOW, THRESHOLD_HIGH, cv2.THRESH_BINARY)[1]
-
-    print(img_out.shape)
-    imageio.imwrite('test/init.jpg', img_out)
+def NWG(img_out):
+    # img_out = cv2.threshold(path, THRESHOLD_LOW, THRESHOLD_HIGH, cv2.THRESH_BINARY)[1]
+    #
+    # print(img_out.shape)
+    # imageio.imwrite('test/init.jpg', img_out)
     H, W = img_out.shape
     flag = True
     g = 1
@@ -60,8 +61,11 @@ def NWG(path):
 
 
 def sketch(path):
+    print(path)
     gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
     # cv2.imwrite("_gray.jpg", gray)
+    ratio = WIDTH / gray.shape[1]
+    gray = cv2.resize(gray, (0, 0), fx=ratio, fy=ratio)
 
     neiborhood24 = np.array([[1, 1, 1, 1, 1],
                              [1, 1, 1, 1, 1],
@@ -74,15 +78,17 @@ def sketch(path):
 
     diff = cv2.absdiff(dilated, gray)
     # cv2.imwrite("_diff.jpg", diff)
+    # diff = NWG(dilated)
 
     contour = 255 - diff
     # cv2.imwrite("./output.jpg", contour)
+    contour = cv2.threshold(contour, np.mean(contour)-20, 255, cv2.THRESH_BINARY)[1]
 
     # print(path, np.mean(contour), np.mean(contour[contour>100]))
 
-    return cv2.threshold(contour, np.mean(contour)-20, 255, cv2.THRESH_BINARY)[1]
+    return contour
 
 
 filenames = os.listdir("data")
 for filename in filenames:
-    imageio.imwrite("result/"+filename, sketch("data/"+filename))
+    imageio.imwrite("result500/"+filename, sketch("data/"+filename))
