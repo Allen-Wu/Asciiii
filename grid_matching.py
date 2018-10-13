@@ -1,9 +1,7 @@
 import numpy as np
 
 # Padding zeros for input image to be right size
-def zero_padding(img_matrix, grid_candidate):
-    grid_row = grid_candidate.shape[0]
-    grid_col = grid_candidate.shape[1]
+def zero_padding(img_matrix, grid_row, grid_col):
     resize_row = img_matrix.shape[0]
     resize_col = img_matrix.shape[1]
     if (img_matrix.shape[0] % grid_row) != 0:
@@ -15,19 +13,29 @@ def zero_padding(img_matrix, grid_candidate):
     result[:img_matrix.shape[0], :img_matrix.shape[1]] = img_matrix
     return result
 
-# Measure the hamming distance between two grids
-# Return the index for the grid of minimum hamming distance
-def hamming_grid_match(grid_candidate, measure_grid):
-    def hamming_dis(a, b, gray_scale=False):
-        if gray_scale == False:
-            xor_array = np.bitwise_xor(a, b)
-            return np.count_nonzero(xor_array)
-        else:
-            # Calculate the sum of gray scale diff
-            return np.absolute(a - b).sum()
-    
-    hamming_dis_list = [hamming_dis(x, measure_grid) for x in grid_candidate]
-    return hamming_dis_list.index(min(hamming_dis_list))
+def img_to_ascii(ascii_candidate, img_matrix):
+    grid_row, grid_col = ascii_candidate.get_shape()
+    output_row = int(img_matrix.shape[0] / grid_row)
+    output_col = int(img_matrix.shape[1] / grid_col)
+    ascii_res = np.zeros((output_row, output_col))
+    char_list = []
+    print('Output text size: ', output_row, output_col)
+    for i in range(output_row):
+        row_list = []
+        for j in range(output_col):
+            sub_matrix = img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)]
+            id_max, _ = ascii_candidate.hamming_match(sub_matrix, True)
+            ascii_res[i][j] = id_max
+            row_list.append(chr(id_max))
+        char_list.append(row_list)
+    f = open('ascii_output.txt','w')
+    for x in char_list:
+        string = ''
+        for y in x:
+            string += y
+        f.write(string + '\n')
+    f.close()
+    # print(ascii_res)
 
 # Only for testing
 def main():
