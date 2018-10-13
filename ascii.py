@@ -3,21 +3,21 @@ import imageio
 import glob
 import os
 
-ascii_dict = {}
+class ASCII:
+    ascii_dict = {}
 
-def ascii_array(fname):
-    im = imageio.imread(fname)
-    return 255 - im
+    def __init__(self):
+        self.construct_ascii_dict()
 
-def construct_ascii_dict():
-    for im_path in glob.glob('ascii/*.png'):
-        bitmap = ascii_array(im_path)
-        id = int(os.path.basename(im_path).split('.')[0])
-        ascii_dict[id] = bitmap
+    def get_array(self, id):
+        return self.ascii_dict[id]
 
-def main():
-    construct_ascii_dict()
-    print(ascii_dict)
+    def ascii_array(self, fname):
+        im = imageio.imread(fname)
+        return 255 - im
 
-if __name__ == '__main__':
-    main()
+    def construct_ascii_dict(self):
+        for im_path in glob.glob('ascii/*.png'):
+            bitmap = self.ascii_array(im_path)
+            id = int(os.path.basename(im_path).split('.')[0])
+            self.ascii_dict[id] = bitmap
