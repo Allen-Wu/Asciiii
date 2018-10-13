@@ -1,83 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>asciiii</title>
-
+  <title>Asciiii - Ascii Style Converter</title>
+  <style>
+  input[type=submit] {
+      background-color: #2f2f2f;
+      border: none;
+      color: white;
+      padding: 12px 28px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 8px;
+  }
+  input[type=submit]:hover {
+      background-color: #808080;
+  }
+  input[type=text] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+  }
+  </style>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="icon" href="/static/images/asciiii.ico" type="image/x-icon"/>
 </head>
 <body>
-	<header>
-		<div style="float:left;"> <a href="/"> <img src="/images/logo.png" width="180" alt="logo" style="vertical-align:middle"> </a> </div>
-		<div style="float:right;"> <h3><a href="/explore/">explore</a> | <a href="/u/awdeorio/">awdeorio</a></h3></div>
-	</header>
-	<div class="line"></div>
-	<br />
-
-	<div class="container">
-		<article>
-			<div style="float:left;"> <a href="/u/awdeorio/"> <img src="/uploads/e1a7c5c32973862ee15173b0259e3efdb6a391af.jpg" alt="Pic1" width="50" style="vertical-align:middle"> </a> </div>
-			<div style="float:left;"> <a href="/u/awdeorio/"> <h3>awdeorio</h3> </a> </div>
-			<div style="float:right;"> <a href="/p/3/"><h3 style="color: grey">10 minutes ago</h3></a></div>
-		</article>
-
-		<img src="/uploads/9887e06812ef434d291e4936417d125cd594b38a.jpg" alt="Pic" width="500">
-
-		<article>
-
-			<p>1 like</p>
-
-
-			<p><a href="/u/awdeorio/"><strong>awdeorio</strong></a> #chickensofinstagram</p>
-
-			<p><a href="/u/jflinn/"><strong>jflinn</strong></a> I &lt;3 chickens</p>
-
-			<p><a href="/u/michjc/"><strong>michjc</strong></a> Cute overload!</p>
-
-		</article>
-	</div>
-	<br />
-
-	<div class="container">
-		<article>
-			<div style="float:left;"> <a href="/u/jflinn/"> <img src="/uploads/505083b8b56c97429a728b68f31b0b2a089e5113.jpg" alt="Pic1" width="50" style="vertical-align:middle"> </a> </div>
-			<div style="float:left;"> <a href="/u/jflinn/"> <h3>jflinn</h3> </a> </div>
-			<div style="float:right;"> <a href="/p/2/"><h3 style="color: grey">4 hours ago</h3></a></div>
-		</article>
-
-		<img src="/uploads/ad7790405c539894d25ab8dcf0b79eed3341e109.jpg" alt="Pic" width="500">
-
-		<article>
-
-			<p>2 likes</p>
-
-
-			<p><a href="/u/awdeorio/"><strong>awdeorio</strong></a> Sick #crossword</p>
-
-		</article>
-	</div>
-	<br />
-
-	<div class="container">
-		<article>
-			<div style="float:left;"> <a href="/u/awdeorio/"> <img src="/uploads/e1a7c5c32973862ee15173b0259e3efdb6a391af.jpg" alt="Pic1" width="50" style="vertical-align:middle"> </a> </div>
-			<div style="float:left;"> <a href="/u/awdeorio/"> <h3>awdeorio</h3> </a> </div>
-			<div style="float:right;"> <a href="/p/1/"><h3 style="color: grey">a day ago</h3></a></div>
-		</article>
-
-		<img src="/uploads/122a7d27ca1d7420a1072f695d9290fad4501a41.jpg" alt="Pic" width="500">
-
-		<article>
-
-			<p>3 likes</p>
-
-
-			<p><a href="/u/jflinn/"><strong>jflinn</strong></a> Walking the plank #chickensofinstagram</p>
-
-			<p><a href="/u/awdeorio/"><strong>awdeorio</strong></a> This was after trying to teach them to do a #crossword</p>
-
-		</article>
-	</div>
-	<br />
-
+  <table>
+	<tr>
+		<td>
+		<h2>Asciiii - Ascii Style Converter</h2>
+		<form method="post" enctype="multipart/form-data" action="pic2ascii.cgi">
+		<table cellspacing="8">
+      <tr>
+          <td><label for="image">Image File: </label></td><td><input name="image" size="50" type="file"></td>
+      </tr>
+      <tr>
+          <td><label for="width">Ascii Height: </label></td><td><input name="width" value="100" size="3" maxlength="3" type="text"> (1-500) lines</td>
+      </tr>
+      <tr>
+          <td><label for="invert">Color: </label></td>
+			<td>
+  			<select name="invert" id="invert">
+  				<option selected="selected" value="0">No</option>
+  				<option value="1">Yes</option>
+  			</select>
+			</td>
+      </tr>
+        <tr>
+            <td><br><input value="Submit" type="submit"></td>
+        </tr>
+        </table>
+  		</form>
+  		</td>
+  	</tr>
+  </table>
+  <img class="photo" src='/uploads/{{ filename }}' alt='{{ origin-filename }}'>
+  <img class="photo" src='/results/{{ filename }}' alt='{{ ascii-filename }}'>
 
 </body>
 
