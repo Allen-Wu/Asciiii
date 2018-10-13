@@ -27,13 +27,13 @@
   }
   </style> -->
   <link rel="stylesheet" href="/static/css/style.css">
-  <link rel="icon" href="../static/images/favicon.png" type="image/x-icon"/>
+  <link rel="icon" href="/static/images/favicon.png" type="image/x-icon"/>
 </head>
 <body>
   <table>
 	<tr>
 		<td>
-		<h2>Asciiii - Ascii Style Converter</h2>
+		<h1>Asciiii - Ascii Style Converter</h1>
 		<form action="#" method="post" enctype="multipart/form-data">
 		<table cellspacing="8">
       <tr>
@@ -60,8 +60,17 @@
   	</tr>
   </table>
   {% if ifcontent %}
-    <img class="photo" src='{{ origin }}' alt='{{ origin }}'>
-    <img class="photo" src='{{ ascii }}' alt='{{ ascii }}'>
+    <h3>----------</h3>
+    <h3>Original Image:</h3>
+    <img src='/uploads/{{ origin }}' alt='{{ origin }}'>
+    <img src='/results/{{ ascii }}' alt='{{ ascii }}'>
+    <h3>Asciified Text:</h3>
+    <p class="grey">{{ asciiii }}</p>
+  {% endif %}
+
+  {% if ifdebug %}
+    <h3>----------</h3>
+    <p>Wrong Type of Image. Support .png, .jpg, .jpeg, .gif.</p>
   {% endif %}
 
 </body>
