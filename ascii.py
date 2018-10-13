@@ -5,9 +5,14 @@ import os
 
 class ASCII:
     _ascii_dict = {}
+    x = 0
+    y = 0
 
     def __init__(self):
         self._construct_ascii_dict()
+
+    def get_shape(self):
+        return self.x, self.y
 
     def get_array(self, id):
         return self._ascii_dict[id]
@@ -21,6 +26,7 @@ class ASCII:
             bitmap = self._ascii_array(im_path)
             id = int(os.path.basename(im_path).split('.')[0])
             self._ascii_dict[id] = bitmap
+        self.x, self.y = self._ascii_dict[id].shape
 
     def hamming_match(self, measure_grid, gray_scale=True):
         id_max = 0
