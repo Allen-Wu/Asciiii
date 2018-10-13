@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 # Padding zeros for input image to be right size
 def zero_padding(img_matrix, grid_row, grid_col):
@@ -19,7 +20,6 @@ def img_to_ascii(ascii_candidate, img_matrix):
     output_col = int(img_matrix.shape[1] / grid_col)
     ascii_res = np.zeros((output_row, output_col))
     char_list = []
-    print('Output text size: ', output_row, output_col)
     for i in range(output_row):
         row_list = []
         for j in range(output_col):
@@ -28,14 +28,13 @@ def img_to_ascii(ascii_candidate, img_matrix):
             ascii_res[i][j] = id_max
             row_list.append(chr(id_max))
         char_list.append(row_list)
-    f = open('ascii_output.txt','w')
+    output_string = ''
     for x in char_list:
-        string = ''
         for y in x:
-            string += y
-        f.write(string + '\n')
-    f.close()
-    # print(ascii_res)
+            output_string += y
+        output_string += '\n'
+    os.system('clear')
+    print(output_string)
 
 # Only for testing
 def main():
