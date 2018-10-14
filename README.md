@@ -3,7 +3,7 @@
 [![Made in MHacks](https://img.shields.io/badge/Made%20in-MHacks11-d41359.svg?style=flat)](https://mhacks.org)
 [![Build Status](https://travis-ci.org/Allen-Wu/AsciiStyleConvertor.svg?branch=master)](https://travis-ci.org/Allen-Wu/AsciiStyleConvertor)
 
-[Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and ouputs the ASCII-style text strings depicted by the edge information of the input. 
+[Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and outputs the ASCII-style text strings depicted by the edge information of the input. 
 
 <img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/dataset.gif" width="300">
 
