@@ -5,7 +5,7 @@
 
 [Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and ouputs the ASCII-style text strings depicted by the edge information of the input. 
 
-<gif here>
+<img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/dataset.gif" width="300">
 
 ## Table of Contents
 
@@ -24,14 +24,18 @@
     - [Multi-processing](#multi-processing)
   - [Machine Learning](#machine-learning)
     - [Multi-layer-perceptron](#multi-layer-perceptron)
-    - [Convolutional Neural Networks](#convolutional-neural-networks)
+    - [Machine-generated dataset](#machine-generated-dataset)
 - [Packages](#packages)
   - [Algorithm Packages](#algorithm-packages)
   - [Server Packages](#server-packages)
   
 ## Getting Started
+There are two ways of accessing our project.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+- Visit our [website](http://asciiii.com)
+- Clone the repo and run it on your own machine
+
+These following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -95,25 +99,32 @@ Similar approach is used for multi-processing method, which is based on python m
 
 
 #### Machine Learning
+In the field of computer vision, machine learning is very popular to analysis the feature in the image. We tried to implement a neural network to classify the windows in the target images based on which ascii character is most similar to the pixels graphically. 
 
 ##### Multi-layer-perceptron
+Since the sketch image after edge detection can be impressed as a binary image, we employ the multi-layer-percepton instead of complicated neural network such as CNN. The validation accuracy is limited to 70% on the dataset we generated. 
 
-##### Convolutional Neural Networks
+##### Machine-generated dataset
+The baseline method is using Hamilton distance to measure the similarity between image windows and asciiii characters. For lack of time, we use the Hamilton algorithm instead of labeling the image window by hand to generate training data. As a result, the validation accuracy is not very impressive. 
+
+We also print windnow and compare the prediction of two algorithms and find the machine learning model makes no more sense. 
+In the following picture, "target" corresponds to Hamilton algorithm and prediction corresponds to machine learning. 
+
+![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/machine_learning/model_cmp/12.png)
 
 ## Packages
 
 #### Algorithm Packages
-- numpy
-- scipy
-- opencv-python
-- imageio
-- PIL
-- shutil
-- matplotlib
-- torch
+- [numpy](http://www.numpy.org/), scientific computing and matrix operations
+- [scipy](https://www.scipy.org/), numerical algorithms and statistics
+- [opencv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/), computer visions and image processing
+- [imageio](https://imageio.github.io/), interface for read and write images
+- [PIL](https://pillow.readthedocs.io/), Python image library
+- [matplotlib](https://matplotlib.org/), produce quality figures
+- [torch](https://pytorch.org/), neural networks
 
 #### Server Packages
-- flask
-- sh
-- setup
-- util
+- [flask](http://flask.pocoo.org/), built-in web application server
+- [sh](https://amoffat.github.io/sh/), function caller
+- [Werkzeug](http://werkzeug.pocoo.org/), WSGI utility library
+- [Jinja2](http://jinja.pocoo.org/docs/2.10/), HTML templates

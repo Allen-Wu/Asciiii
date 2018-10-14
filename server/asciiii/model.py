@@ -10,7 +10,7 @@ from main import run
 import util
 
 def create_ascii(photo, lines, eta, color, light):
-    config = {'file': util.get_abs_path('server/var/uploads/' + photo), 'line': int(lines), 'eta': float(eta), 'light': light}
+    config = {'file': util.get_abs_path('server/var/uploads/' + photo), 'line': int(lines), 'eta': float(eta), 'color': color, 'light': light}
     res = run(**config)
     return res
 
