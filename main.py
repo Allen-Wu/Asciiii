@@ -4,6 +4,7 @@ import time
 from grid_matching import zero_padding, img_to_ascii
 from edge_detect import Sketch
 from ascii import ASCII
+import cv2
 
 IMAGE_WIDTH = 800
 
@@ -13,6 +14,20 @@ def process(sketcher, ascii_mapper, path):
     row, col = ascii_mapper.get_shape()
     padded_img = zero_padding(edged_image, row, col)
     img_to_ascii(ascii_mapper, padded_img)
+
+def real_time_streaming(ascii_mapper, sketcher):
+    cap = cv2.VideoCapture(0)
+
+    while True:
+        _, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        edged_image = sketcher.convert('', frame=gray)
+        row, col = ascii_mapper.get_shape()
+
+        # Enlarge the image twice and padding
+        # edge_detected = cv2.resize(edge_detected, (0, 0), fx=1, fy=1)
+        padded_img = zero_padding(edged_image, row, col)
+        img_to_ascii(ascii_mapper, padded_img)
 
 def main():
     # Parse arguments
@@ -29,14 +44,13 @@ def main():
     sketcher = Sketch(line_number)
     # process(sketcher, ascii_mapper, im_path, line_number)
 
-    start = time.time()
+    # Real time image to ascii streaming
+    real_time_streaming(ascii_mapper, sketcher)
 
     # Testing for the images in data folder
     for im_path in glob.glob('data/*.png'):
         process(sketcher, ascii_mapper, im_path)
 
-    end = time.time()
-    print(end - start)
 
 if __name__ == '__main__':
     main()
