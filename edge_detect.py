@@ -101,9 +101,12 @@ class Sketch:
     def __init__(self, width=500):
         self.width = width
 
-    def convert(self, path):
+    def convert(self, path, frame=None):
         # print(path)
-        gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+        if path == '':
+            gray = frame
+        else:
+            gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
         # cv2.imwrite("_gray.jpg", gray)
         ratio = self.width / gray.shape[1]
         gray = cv2.resize(gray, (0, 0), fx=ratio, fy=ratio)
