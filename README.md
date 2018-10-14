@@ -86,6 +86,10 @@ optional arguments:
 
 #### Static Images and Gif
 
+Static Image               |  Gif
+:-------------------------:|:-------------------------:
+<img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/static_img.png" width="450">  |  <img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/stream_gif.gif" width="450">
+
 #### Colored Edges
 ![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/data/demo/color.jpg)
 
