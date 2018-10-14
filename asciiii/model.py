@@ -30,6 +30,10 @@ def save_file(file):
     filename_uuid = uuid.uuid4().hex + suffix
     if suffix not in asciiii.app.config["ALLOWED_EXTENSIONS"]:
         return ""
+
+    for filename in os.listdir(asciiii.app.config["UPLOAD_FOLDER"]):
+        os.unlink(os.path.join(asciiii.app.config["UPLOAD_FOLDER"],filename))
+
     filename = os.path.join(
         asciiii.app.config["UPLOAD_FOLDER"],
         filename_uuid
