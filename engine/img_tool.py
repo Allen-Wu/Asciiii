@@ -7,7 +7,7 @@ from PIL import Image
 import cv2
 import scipy
 import time
-from grid_matching import zero_padding, img_to_ascii
+from engine.grid_matching import zero_padding, img_to_ascii
 
 ASCII_ROOT = "ascii/light"
 

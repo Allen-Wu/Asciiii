@@ -3,7 +3,7 @@
 import flask
 
 app = flask.Flask(__name__)
-app.config.from_object('asciiii.config')
+app.config.from_object('engine.config')
 
 # Overlay settings read from file specified by environment variable. This is
 # useful for using different on development and production machines.
@@ -14,5 +14,5 @@ app.config.from_envvar('ASCIIII_SETTINGS', silent=True)
 # circular import, which is naughty, but Flask was designed that way.
 # (Reference http://flask.pocoo.org/docs/0.12/patterns/packages/)  We're
 # going to tell pylint and pycodestyle to ignore this coding style violation.
-import asciiii.views
-import asciiii.model
+import engine.views
+import engine.model

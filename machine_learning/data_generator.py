@@ -1,8 +1,8 @@
 import glob
 from collections import defaultdict
-from grid_matching import zero_padding
-from edge_detect import Sketch
-from ascii import ASCII
+from engine.grid_matching import zero_padding
+from engine.edge_detect import Sketch
+from engine.ascii import ASCII
 import torch
 import random
 import scipy.signal

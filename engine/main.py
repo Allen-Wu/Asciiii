@@ -2,14 +2,15 @@ import argparse
 import glob
 import cv2
 import numpy as np
-from grid_matching import zero_padding, img_to_ascii
-from edge_detect import Sketch
-from ascii import ASCII
+from engine.grid_matching import zero_padding, img_to_ascii
+from engine.edge_detect import Sketch
+from engine.ascii import ASCII
 import time
 import signal
 import sys
-import util
-from img_tool import real_time_gif
+from engine import util
+from engine.img_tool import real_time_gif
+
 
 def process(sketcher, ascii_mapper, path, color):
     if color:
@@ -20,9 +21,11 @@ def process(sketcher, ascii_mapper, path, color):
     padded_img = zero_padding(edged_image, row, col)
     return img_to_ascii(ascii_mapper, padded_img, color=color, colorful=colorful)
 
+
 def sigterm_handler(_signo, _stack_frame):
     print('Gracefully shut down real time streaming.')
     sys.exit(0)
+
 
 def real_time_streaming(ascii_mapper, sketcher):
     # Set graceful interruption
@@ -44,6 +47,7 @@ def real_time_streaming(ascii_mapper, sketcher):
         img_to_ascii(ascii_mapper, padded_img)
         end = time.time()
         print('fps: {:f}'.format(1 / (end - start)))
+
 
 def run(**args_dict):
     im_path = args_dict['file']
@@ -77,7 +81,7 @@ def main():
     parser.add_argument('-l', '--line', action='store', type=int, default=800, help='desired image width')
     parser.add_argument('-v', '--video', action='store_true', default=False, help='real-time video mode, need your camera')
     parser.add_argument('-e', '--eta', action='store', type=float, default=0.15, help='hyper-parameter for ascii matching')
-    parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty')
+    parser.add_argument('-li', '--light', action='store_true', default=False, help='use a small set of ascii with high frequenty')
     parser.add_argument('-g', '--gif', action='store_true', default=False, help='generate a real-time gif with specific duration')
     parser.add_argument('-c', '--color', action='store_true', default=False, help='colorful mode')
 
@@ -85,8 +89,6 @@ def main():
     args_dict = vars(args)
 
     run(**args_dict)
-
-
 
 
 if __name__ == '__main__':

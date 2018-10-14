@@ -1,5 +1,5 @@
 import unittest
-from main import run
+from engine.main import run
 
 class TestBasics(unittest.TestCase):
     def test_static(self):
