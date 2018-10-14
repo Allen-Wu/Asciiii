@@ -10,17 +10,21 @@ Asciiii is an ASCII style converter made during MHacks11. It supports image (jpg
 
 <gif here>
 
-Table of Contents
+[Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and ouputs the ASCII-style text strings depicted by the edge information of the input. 
 
-- Getting Started
-  - Prerequisites
-  - Setup
-- Demo 
+<gif here>
+
+## Table of Contents
+
+- [Getting Started](## Getting Started)
+  - [Prerequisites](###erequisites)
+  - [Setup](###Setup)
+- [Demo](## Demo) 
   - Web Application
   - Static and Gif Images in Terminal
   - Colored Edges
   - Real-time Streaming
-- Optimization Attempts
+- [Optimization Attempts](## Optimization Attempts)
   - Heuristics
   - Parallelism
     - Mulit-threading
@@ -28,54 +32,62 @@ Table of Contents
   - Machine Learning
     - MultiLayerPerceptron
     - Covolutional Neural Networks
-- Packages
+- [Packages](## Packages)
   - Algorithm Packages
   - Server Packages
 
-Getting Started
+## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Prerequisites
+### Prerequisites
 
 - Clone the GitHub repository
 
-    git clone git@github.com:Allen-Wu/AsciiStyleConvertor.git
+```
+git clone git@github.com:Allen-Wu/AsciiStyleConvertor.git
+```
 
-Setup
+### Setup
 
 - quired libraries
 
-    pip install -r requirements.txt
+```
+pip install -r requirements.txt
+```
 
 - Install required libraries
 
-    pip install -r requirements.txt
+```
+pip install -r requirements.txt
+```
 
 - Run the program in terminal
 
-    python main.py -h
-    usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g]
-    
-    optional arguments:
-      -h, --help            show this help message and exit
-      -f FILE, --file FILE  input image file path
-      -l LINE, --line LINE  desired image width
-      -v, --video           real-time video mode, need your camera
-      -e ETA, --eta ETA     hyper-parameter for ascii matching
-      -li, --light          use a small set of ascii with high frequenty
-      -g, --gif             generate a real-time gif with specific duration
-    
+```
+python main.py -h
+usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g]
 
-Demo
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FILE, --file FILE  input image file path
+  -l LINE, --line LINE  desired image width
+  -v, --video           real-time video mode, need your camera
+  -e ETA, --eta ETA     hyper-parameter for ascii matching
+  -li, --light          use a small set of ascii with high frequenty
+  -g, --gif             generate a real-time gif with specific duration
+
+```
+
+## Demo
 
 
 
-Packages
+## Packages
 
-Algorithm Packages
+#### Algorithm Packages
 
 - 
 - 
 
-Server Packages
+#### Server Packages
