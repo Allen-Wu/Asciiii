@@ -127,10 +127,14 @@ class Sketch:
 
         if color:
             colorful = cv2.imread(path, cv2.IMREAD_COLOR)
+            colorful = cv2.GaussianBlur(colorful, (15, 15), 0)
+
             colorful = cv2.resize(
-                colorful, (int(colorful.shape[1]*ratio), int(colorful.shape[0]*ratio)),
+                colorful, (contour.shape[1], contour.shape[0]),
                 interpolation=cv2.INTER_AREA
             )
+            colorful = cv2.GaussianBlur(colorful, (3, 3), 0)
+
             return [contour, colorful]
 
         return contour
