@@ -8,6 +8,7 @@ from ascii import ASCII
 import time
 import signal
 import sys
+import util
 
 def process(sketcher, ascii_mapper, path):
     edged_image = sketcher.convert(path)
@@ -56,7 +57,7 @@ def run(**args_dict):
 
     else:
         # Testing for the images in data folder
-        for im_path in glob.glob('data/*.jpg'):
+        for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
             process(sketcher, ascii_mapper, im_path)
 
 
@@ -68,7 +69,7 @@ def main():
     parser.add_argument('-l', '--line', action='store', type=int, default=800, help='desired image width')
     parser.add_argument('-v', '--video', action='store_true', default=False, help='real-time video mode, need your camera')
     parser.add_argument('-e', '--eta', action='store', type=float, default=0.15, help='hyper-parameter for ascii matching')
-    parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty ')
+    parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty')
     args = parser.parse_args()
     args_dict = vars(args)
 

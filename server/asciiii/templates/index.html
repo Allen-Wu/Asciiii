@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Asciiii - Ascii Style Converter</title>
   <!-- <style>
   input[type=submit] {
@@ -40,7 +41,14 @@
           <td><label for="image">Image File: </label></td><td><input name="file" size="50" type="file"/></td>
       </tr>
       <tr>
-          <td><label for="width">Ascii Height: </label></td><td><input name="lines" value="100" size="3" maxlength="3" type="text"/></td>
+          <td><label for="width">Ascii Width: </label></td><td><input name="lines" value="800" size="4" maxlength="4" type="text"/></td>
+      </tr>
+      <tr>
+          <td><label for="invert">Eta (Slack Hyperparameter): </label></td>
+          <td>
+            <input type="range" min="0" max="1" value="0.15" class="slider" step="0.05" id="etaRange" name="etaRange" oninput="this.form.etaInput.value=this.value">
+            <input type="number" name="etaInput" min="0.0" max="1.0" value="0.15" step="0.05" oninput="this.form.etaRange.value=this.value" />
+          </td>
       </tr>
       <tr>
           <td><label for="invert">Color: </label></td>
@@ -48,6 +56,15 @@
   			<select name="color" id="color">
   				<option selected="selected" value="0">No</option>
   				<option value="1">Yes</option>
+  			</select>
+			</td>
+      </tr>
+      <tr>
+          <td><label for="invert">Light Load Mode: </label></td>
+			<td>
+  			<select name="light" id="light">
+  				<option selected="selected" value="1">Yes</option>
+  				<option value="0">No</option>
   			</select>
 			</td>
       </tr>
@@ -59,17 +76,18 @@
   		</td>
   	</tr>
   </table>
+
   {% if ifcontent %}
-    <h3>----------</h3>
+    <h4>----------</h4>
     <h3>Original Image:</h3>
-    <img src='/uploads/{{ origin }}' alt='{{ origin }}'>
-    <img src='/results/{{ ascii }}' alt='{{ ascii }}'>
+    <img src="{{ original }}" alt="{{ original }}">
+    <!-- <img src='/results/{{ ascii }}' alt='{{ ascii }}'> -->
     <h3>Asciified Text:</h3>
-    <p class="grey">{{ ascii }}</p>
+    <p>{{ ascii }}</p>
   {% endif %}
 
   {% if ifdebug %}
-    <h3>----------</h3>
+    <h4>----------</h3>
     <p>Wrong Type of Image. Support .png, .jpg, .jpeg, .gif.</p>
   {% endif %}
 

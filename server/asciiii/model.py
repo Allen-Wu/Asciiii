@@ -1,14 +1,18 @@
+import sys
 import os
 import shutil
 import tempfile
 import uuid
 import flask
 import asciiii
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+from main import run
+import util
 
-
-def create_ascii(photo, lines, color):
-    contents = "                 </br>dhjsjdsiiwjdisidseee</br>                      </br>"
-    return '2.png', contents
+def create_ascii(photo, lines, eta, color, light):
+    config = {'file': util.get_abs_path('uploads/') + photo, 'line': lines, 'eta': eta, 'light': light}
+    res = run(**config)
+    return res
 
 
 def save_file(file):
