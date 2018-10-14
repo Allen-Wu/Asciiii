@@ -68,7 +68,7 @@ def main():
     parser.add_argument('-l', '--line', action='store', type=int, default=800, help='desired image width')
     parser.add_argument('-v', '--video', action='store_true', default=False, help='real-time video mode, need your camera')
     parser.add_argument('-e', '--eta', action='store', type=float, default=0.15, help='hyper-parameter for ascii matching')
-    parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty ')
+    parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty')
     args = parser.parse_args()
     args_dict = vars(args)
 

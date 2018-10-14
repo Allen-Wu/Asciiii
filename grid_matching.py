@@ -1,6 +1,7 @@
 import numpy as np
 import os
-import itertools
+from ascii import ASCII
+from itertools import product, repeat
 from multiprocessing import Pool
 
 # Clear output screen
@@ -50,44 +51,23 @@ def img_to_ascii(ascii_candidate, img_matrix):
     print(output_string)
 
 
-# def img_to_ascii_multi(ascii_candidate, img_matrix):
-#     pool = Pool(processes=1)
-#     grid_row, grid_col = ascii_candidate.get_shape()
-#     output_row = int(img_matrix.shape[0] / grid_row)
-#     output_col = int(img_matrix.shape[1] / grid_col)
-#
-#     row_size = list(range(output_row))
-#     col_size = list(range(output_col))
-#
-#     submatrix = [img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)] for i, j in itertools.product(row_size, col_size)]
-#     char_list = np.array(pool.map(ascii_candidate.hamming_match, submatrix))
-#     output_string = ''
-#     for x in char_list.reshape((output_row, output_col)):
-#         for y in x:
-#             output_string += chr(y)
-#         output_string += '\n'
-#     # clear()
-#     print(output_string)
-#     exit()
+def img_to_ascii_multi(ascii_candidate, img_matrix):
+    pool = Pool(processes=8)
+    grid_row, grid_col = ascii_candidate.get_shape()
+    output_row = int(img_matrix.shape[0] / grid_row)
+    output_col = int(img_matrix.shape[1] / grid_col)
 
-# # Only for testing
-# def main():
-#     # Test for zero padding
-#     # Grid matrix
-#     grid_candidate = np.random.rand(3, 2)
-#     img_matrix = np.random.rand(7, 5)
-#     print(img_matrix)
-#     print(zero_padding(img_matrix, grid_candidate))
-#
-#     # Test for Hamming Distance
-#     grid_candidate = []
-#     candidate_one = np.array([[1, 0, 1], [1, 0, 1], [1, 0, 1]])
-#     candidate_two = np.array([[0, 1, 0], [0, 1, 0], [0, 0, 1]])
-#     measure_grid = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-#     grid_candidate.append(candidate_one)
-#     grid_candidate.append(candidate_two)
-#     print("Best index: ", hamming_grid_match(grid_candidate, measure_grid))
-#
-#
-# if __name__ == '__main__':
-#     main()
+    row_size = list(range(output_row))
+    col_size = list(range(output_col))
+
+    sub_matrix = [img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)] \
+                  for i, j in product(row_size, col_size)]
+    args = list(zip(sub_matrix, repeat(ascii_candidate._ascii_dict), repeat(ascii_candidate.eta)))
+    char_list = np.array(pool.starmap(ASCII.hamming_match_static, args))
+    output_string = ''
+    for x in char_list.reshape((output_row, output_col)):
+        for y in x:
+            output_string += chr(y)
+        output_string += '\n'
+    # clear()
+    print(output_string)
