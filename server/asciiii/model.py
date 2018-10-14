@@ -7,7 +7,7 @@ import asciiii
 
 
 def create_ascii(photo, lines, color):
-    contents = "                 \ndhjsjdsiiwjdisids\n"
+    contents = "                 </br>dhjsjdsiiwjdisidseee</br>                      </br>"
     return '2.png', contents
 
 
