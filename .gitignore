@@ -8,6 +8,7 @@ __pycache__/
 env/
 var/
 venv/
+ascii-env/
 .idea/
 machine_learning/save
 machine_learning/AsciiSketch
