@@ -1,5 +1,7 @@
 import numpy as np
 import os
+import itertools
+from multiprocessing import Pool
 
 # Clear output screen
 def clear():
@@ -36,7 +38,7 @@ def img_to_ascii(ascii_candidate, img_matrix):
         row_list = []
         for j in range(output_col):
             sub_matrix = img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)]
-            id_max, _ = ascii_candidate.hamming_match(sub_matrix, True)
+            id_max = ascii_candidate.hamming_match(sub_matrix, True)
             row_list.append(chr(id_max))
         char_list.append(row_list)
     output_string = ''
@@ -46,6 +48,27 @@ def img_to_ascii(ascii_candidate, img_matrix):
         output_string += '\n'
     clear()
     print(output_string)
+
+
+# def img_to_ascii_multi(ascii_candidate, img_matrix):
+#     pool = Pool(processes=1)
+#     grid_row, grid_col = ascii_candidate.get_shape()
+#     output_row = int(img_matrix.shape[0] / grid_row)
+#     output_col = int(img_matrix.shape[1] / grid_col)
+#
+#     row_size = list(range(output_row))
+#     col_size = list(range(output_col))
+#
+#     submatrix = [img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)] for i, j in itertools.product(row_size, col_size)]
+#     char_list = np.array(pool.map(ascii_candidate.hamming_match, submatrix))
+#     output_string = ''
+#     for x in char_list.reshape((output_row, output_col)):
+#         for y in x:
+#             output_string += chr(y)
+#         output_string += '\n'
+#     # clear()
+#     print(output_string)
+#     exit()
 
 # # Only for testing
 # def main():

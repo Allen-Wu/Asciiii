@@ -8,12 +8,12 @@ def show_index():
         context = {'ifcontent': False, 'ifdebug': False}
         return flask.render_template("index.html", **context)
     photo = asciiii.model.save_file(flask.request.files['file'])
+    lines = flask.request.form['lines']
+    color = flask.request.form['color']
     if photo == "":
         context = {'ifcontent': False, 'ifdebug': True}
         return flask.render_template("index.html", **context)
-    lines = flask.request.form['lines']
-    color = flask.request.form['color']
     res, res_ascii = asciiii.model.create_ascii(photo, lines, color)
-    print(photo, lines, colors)
+    print(photo, lines, color)
     context = {'ifcontent': True, 'ifdebug' : False, 'origin': photo, 'ascii': res_ascii}
     return flask.render_template("index.html", **context)
