@@ -41,25 +41,24 @@ class ASCII:
         self._x, self._y = self._ascii_dict[id].shape
 
     def _hamming_dis(self, a, b, gray_scale=False):
-        if gray_scale == False:
+        if not gray_scale:
             xor_array = np.bitwise_xor(a, b)
             return np.count_nonzero(xor_array)
         else:
-            # Calculate the sum of gray scale diff
-            return np.absolute(a - b).sum()
+            # Calculate the avg of gray scale diff
+            return np.average(np.absolute(a - b))
 
     def hamming_match(self, measure_grid, gray_scale=True):
-
         if measure_grid.mean() > 255 * (1 - self.eta):
-            return ord(' '), 0
+            return ord(' ')
         if measure_grid.mean() < 255 * self.eta:
-            return ord('#'), 0
+            return ord('#')
 
         id_max = 0
-        distance_min = 1e10
+        distance_min = 256
         for id in self._ascii_dict:
             distance = self._hamming_dis(self._ascii_dict[id], measure_grid, gray_scale)
             if distance < distance_min:
                 distance_min = distance
                 id_max = id
-        return id_max, distance_min
+        return id_max
