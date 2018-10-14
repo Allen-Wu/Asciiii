@@ -2,6 +2,7 @@ import numpy as np
 import imageio
 import glob
 import os
+import util
 
 class ASCII:
     """
@@ -29,12 +30,12 @@ class ASCII:
 
     def _construct_ascii_dict(self):
         if self.light:
-            for im_path in glob.glob('ascii/light/*.png'):
+            for im_path in glob.glob(util.get_abs_path('ascii/light/*.png')):
                 bitmap = self._ascii_array(im_path)
                 id = int(os.path.basename(im_path).split('.')[0])
                 self._ascii_dict[id] = bitmap
         else:
-            for im_path in glob.glob('ascii/light/*.png'):
+            for im_path in glob.glob(util.get_abs_path('ascii/full/*.png')):
                 bitmap = self._ascii_array(im_path)
                 id = int(os.path.basename(im_path).split('.')[0])
                 self._ascii_dict[id] = bitmap

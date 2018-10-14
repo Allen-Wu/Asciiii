@@ -8,6 +8,7 @@ from ascii import ASCII
 import time
 import signal
 import sys
+import util
 
 def process(sketcher, ascii_mapper, path):
     edged_image = sketcher.convert(path)
@@ -56,7 +57,7 @@ def run(**args_dict):
 
     else:
         # Testing for the images in data folder
-        for im_path in glob.glob('data/*.jpg'):
+        for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
             process(sketcher, ascii_mapper, im_path)
 
 

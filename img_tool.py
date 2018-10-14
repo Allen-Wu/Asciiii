@@ -1,6 +1,6 @@
 import os
 import shutil
-from os.path import join, exists
+from os.path import join
 import numpy as np
 import imageio
 from PIL import Image
