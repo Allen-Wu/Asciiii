@@ -114,17 +114,16 @@ In the following picture, "target" corresponds to Hamilton algorithm and predict
 ## Packages
 
 #### Algorithm Packages
-- numpy
-- scipy
-- opencv-python
-- imageio
-- PIL
-- shutil
-- matplotlib
-- torch
+- [numpy](http://www.numpy.org/), scientific computing and matrix operations
+- [scipy](https://www.scipy.org/), numerical algorithms and statistics
+- [opencv-python](https://opencv-python-tutroals.readthedocs.io/en/latest/), computer visions and image processing
+- [imageio](https://imageio.github.io/), interface for read and write images
+- [PIL](https://pillow.readthedocs.io/), Python image library
+- [matplotlib](https://matplotlib.org/), produce quality figures
+- [torch](https://pytorch.org/), neural networks
 
 #### Server Packages
-- flask
-- sh
-- setup
-- util
+- [flask](http://flask.pocoo.org/), built-in web application server
+- [sh](https://amoffat.github.io/sh/), function caller
+- [Werkzeug](http://werkzeug.pocoo.org/), WSGI utility library
+- [Jinja2](http://jinja.pocoo.org/docs/2.10/), HTML templates
