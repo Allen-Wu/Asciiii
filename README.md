@@ -37,8 +37,12 @@ Asciiii is an ASCII style converter made during MHacks11. It supports image (jpg
   - Server Packages
 
 ## Getting Started
+There are two ways of accessing our project.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+- Visit our [website](http://asciiii.com)
+- Clone the repo and run it on your own machine
+
+These following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -82,12 +86,34 @@ optional arguments:
 ## Demo
 
 
+#### Real-time Streaming
 
-## Packages
 
-#### Algorithm Packages
+## Optimization Attempts
+The bottleneck of the algorithm mainly lies in the computation process of determining the proper ascii character for each subpart of the input image. The computation process focuses on the comparing similarity of two grids based on the Hamming Distance. We try to optimize this process by different approaches.
 
-- 
-- 
 
-#### Server Packages
+#### Heuristics
+Several heuristics methods can be used to directly map one subpart of image into an ascii character. For example, if the average pixel value is lower than one low threshold, it can be directly mapped to a empty space character.
+
+#### Parallelism
+
+##### Multi-threading
+We try using multi-threading module `threading` and assign one thread for each subpart computing. The best number of threads is between 8 and 10. However, the cost of creating thread is higher than expected, and the performance is worse than single thread.
+
+##### Multi-processing
+Similar approach is used for multi-processing method, which is based on python module `Pool` module. However, the cost of creating separate process is also too high.
+
+
+#### Machine Learning
+In the field of computer vision, machine learning is very popular to analysis the feature in the image. We tried to implement a neural network to classify the windows in the target images based on which ascii character is most similar to the pixels graphically. 
+
+##### Multi-layer-perceptron
+Since the sketch image after edge detection can be impressed as a binary image, we employ the multi-layer-percepton instead of complicated neural network such as CNN. The validation accuracy is limited to 70% on the dataset we generated. 
+
+##### Machine-generated dataset
+The baseline method is using Hamilton distance to measure the similarity between image windows and asciiii characters. For lack of time, we use the Hamilton algorithm instead of labeling the image window by hand to generate training data. As a result, the validation accuracy is not very impressive. 
+
+We also print windnow and compare the prediction of two algorithms and find the machine learning model makes no more sense. 
+In the following picture, "target" corresponds to Hamilton algorithm and prediction corresponds to machine learning. 
+![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/machine_learning/model_cmp/12.png)
