@@ -14,7 +14,7 @@ def process(sketcher, ascii_mapper, path):
     edged_image = sketcher.convert(path)
     row, col = ascii_mapper.get_shape()
     padded_img = zero_padding(edged_image, row, col)
-    img_to_ascii(ascii_mapper, padded_img)
+    return img_to_ascii(ascii_mapper, padded_img)
 
 def sigterm_handler(_signo, _stack_frame):
     print('Gracefully shut down real time streaming.')
@@ -49,7 +49,7 @@ def run(**args_dict):
     sketcher = Sketch(line_number)
 
     if im_path:
-        process(sketcher, ascii_mapper, im_path)
+        return process(sketcher, ascii_mapper, im_path)
 
     elif args_dict['video']:
         # Real time image to ascii streaming
