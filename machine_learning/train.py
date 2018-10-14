@@ -21,7 +21,6 @@ def train():
     optimizer = torch.optim.SGD(model.parameters(), lr=1)
     criterion = torch.nn.CrossEntropyLoss()
     lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.2)
-
     for epoch in range(100):
         for inputs, target in train_data_loader:
             optimizer.zero_grad()
@@ -33,7 +32,6 @@ def train():
 
             _, predict = torch.max(output, 1)
             num_data = torch.numel(predict)
-            acc = (predict == target).sum().item() / num_data
 
             # print("train>>> lr:", lr_scheduler.get_lr()[0], "; loss:", loss.item(), "; acc:", acc)
 
@@ -73,10 +71,25 @@ def train():
 
             plt.show()
 
-
-        print("!!!!!!!!!!!!!!!!! VALID:", acc)
+        # print("!!!!!!!!!!!!!!!!! VALID:", acc)
 
         model.train()
+
+    idx = torch.tensor([i for i in range(26)])
+    inputs, targets = valid_dataset[idx]
+    inputs = inputs.view(26, -1)
+
+    outputs = model(inputs)
+    _, predict = torch.max(outputs, 1)
+
+    for i in range(26):
+        plt.imshow(inputs[i].reshape(16, 8), cmap=plt.cm.Greys)
+        plt.title('target:{}. predict:{}.'.format(label_to[targets[i].item()], (label_to[predict[i].item()])))
+        plt.xticks([])
+        plt.yticks([])
+
+        plt.savefig("model_cmp/{}.png".format(i))
+        plt.close()
 
 
 train()
