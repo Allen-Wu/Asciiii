@@ -12,9 +12,10 @@ class ASCII:
     _y = 0
 
     def __init__(self, eta=0.2, light=True):
+        self.light = light
         self._construct_ascii_dict()
         self.eta = eta
-        self.light = light
+
 
     def get_shape(self):
         return self._x, self._y
