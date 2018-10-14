@@ -88,10 +88,13 @@ optional arguments:
 #### Heuristics
 
 #### Parallelism
+The bottleneck of the algorithm mainly lies in the computation process of determining the proper ascii character for each subpart of the input image. The computation process focuses on the comparing similarity of two grids based on the Hamming Distance. We try to optimize this process by parallel computing.
 
 ##### Multi-threading
+We try using multi-threading module `threading` and assign one thread for each subpart computing. The best number of threads is between 8 and 10. However, the cost of creating thread is higher than expected, and the performance is worse than single thread.
 
 ##### Multi-processing
+Similar approach is used for multi-processing method, which is based on python module `Pool` module. However, the cost of creating separate process is also too high.
 
 
 #### Machine Learning
