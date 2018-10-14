@@ -1,14 +1,7 @@
-# AsciiStyleConvertor
-
-
-Ascii Style Convertor project for MHacks 2018
+# Asciiii
 
 [![Made in MHacks](https://img.shields.io/badge/Made%20in-MHacks11-d41359.svg?style=flat)](https://mhacks.org)
 [![Build Status](https://travis-ci.org/Allen-Wu/AsciiStyleConvertor.svg?branch=master)](https://travis-ci.org/Allen-Wu/AsciiStyleConvertor)
-
-Asciiii is an ASCII style converter made during MHacks11. It supports image (jpg/jpeg/png/gif) inputs and ouputs the ASCII-style text strings depicted by the edge information of the input. 
-
-<gif here>
 
 [Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and ouputs the ASCII-style text strings depicted by the edge information of the input. 
 
@@ -16,15 +9,15 @@ Asciiii is an ASCII style converter made during MHacks11. It supports image (jpg
 
 ## Table of Contents
 
-- [Getting Started](## Getting Started)
-  - [Prerequisites](###erequisites)
-  - [Setup](###Setup)
-- [Demo](## Demo) 
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+- [Demo](#demo) 
   - Web Application
   - Static and Gif Images in Terminal
   - Colored Edges
   - Real-time Streaming
-- [Optimization Attempts](## Optimization Attempts)
+- [Optimization Attempts](#optimization-attempts)
   - Heuristics
   - Parallelism
     - Mulit-threading
@@ -32,10 +25,10 @@ Asciiii is an ASCII style converter made during MHacks11. It supports image (jpg
   - Machine Learning
     - MultiLayerPerceptron
     - Covolutional Neural Networks
-- [Packages](## Packages)
+- [Packages](#packages)
   - Algorithm Packages
   - Server Packages
-
+  
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
