@@ -4,7 +4,7 @@ import tempfile
 import uuid
 import asciiii
 
-from asciiii.engine.main import run
+from asciiii.engine.core import run
 from asciiii import util
 
 

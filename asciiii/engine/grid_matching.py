@@ -45,9 +45,10 @@ def img_to_ascii(ascii_candidate, img_matrix, return_flag=False, color=False, co
             sub_matrix = img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)]
             id_max = ascii_candidate.hamming_match(sub_matrix, True)
             if color:
-                color_matrix = colorful[i*grid_row, j*grid_col, :]
-                b, g, r = [color_matrix[i] for i in range(3)]
-                row_list.append('\033[38;5;{}m'.format(r, g, b) + str(chr(id_max)) + '\033[0m')
+                color_matrix = colorful[i * grid_row, j * grid_col, :]
+                # b, g, r = [color_matrix[i] for i in range(3)]
+                ansi = rgbToAnsi256(color_matrix[2], color_matrix[1], color_matrix[0])
+                row_list.append('\033[38;5;{}m'.format(ansi) + str(chr(id_max)) + '\033[0m')
             else:
                 row_list.append(chr(id_max))
             if return_flag:
@@ -63,6 +64,17 @@ def img_to_ascii(ascii_candidate, img_matrix, return_flag=False, color=False, co
     clear()
     print(output_string)
     return output_string
+
+
+def rgbToAnsi256(r, g, b):
+    if r == g and g == b:
+        if r < 8:
+            return 16
+        if r > 248:
+            return 231
+        return int(((r - 8) / 247) * 24) + 232
+    ansi = 16 + (36 * int(r / 255 * 5)) + (6 * int(g / 255 * 5)) + int(b / 255 * 5);
+    return ansi
 
 
 def img_to_ascii_multi(ascii_candidate, img_matrix):
