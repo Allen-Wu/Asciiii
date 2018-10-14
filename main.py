@@ -11,11 +11,14 @@ import sys
 import util
 from img_tool import real_time_gif
 
-def process(sketcher, ascii_mapper, path):
-    edged_image = sketcher.convert(path)
+def process(sketcher, ascii_mapper, path, color):
+    if color:
+        edged_image, colorful = sketcher.convert(path, color=color)
+    else:
+        edged_image = sketcher.convert(path)
     row, col = ascii_mapper.get_shape()
     padded_img = zero_padding(edged_image, row, col)
-    return img_to_ascii(ascii_mapper, padded_img)
+    return img_to_ascii(ascii_mapper, padded_img, color=color, colorful=colorful)
 
 def sigterm_handler(_signo, _stack_frame):
     print('Gracefully shut down real time streaming.')
@@ -45,12 +48,13 @@ def real_time_streaming(ascii_mapper, sketcher):
 def run(**args_dict):
     im_path = args_dict['file']
     line_number = args_dict['line']
+    color = args_dict['color']
 
     ascii_mapper = ASCII(eta=args_dict['eta'], light=args_dict['light'])
     sketcher = Sketch(line_number)
 
     if im_path:
-        return process(sketcher, ascii_mapper, im_path)
+        return process(sketcher, ascii_mapper, im_path, color)
 
     elif args_dict['video']:
         # Real time image to ascii streaming
@@ -62,7 +66,7 @@ def run(**args_dict):
     else:
         # Testing for the images in data folder
         for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
-            process(sketcher, ascii_mapper, im_path)
+            process(sketcher, ascii_mapper, im_path, color)
 
 
 
@@ -75,6 +79,8 @@ def main():
     parser.add_argument('-e', '--eta', action='store', type=float, default=0.15, help='hyper-parameter for ascii matching')
     parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty')
     parser.add_argument('-g', '--gif', action='store_true', default=False, help='generate a real-time gif with specific duration')
+    parser.add_argument('-c', '--color', action='store_true', default=False, help='colorful mode')
+
     args = parser.parse_args()
     args_dict = vars(args)
 

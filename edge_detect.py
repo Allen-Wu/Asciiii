@@ -101,7 +101,7 @@ class Sketch:
     def __init__(self, width=500):
         self.width = width
 
-    def convert(self, path, frame=None):
+    def convert(self, path, frame=None, color=False):
         # print(path)
         if path == '':
             gray = frame
@@ -109,7 +109,9 @@ class Sketch:
             gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
         # cv2.imwrite("_gray.jpg", gray)
         ratio = self.width / gray.shape[1]
+
         gray = cv2.resize(gray, (0, 0), fx=ratio, fy=ratio)
+
         dilated = cv2.dilate(gray, self.neighborhood, iterations=1)
         # cv2.imwrite("_dilated.jpg", dilated)
 
@@ -122,6 +124,14 @@ class Sketch:
         contour = cv2.threshold(contour, np.mean(contour)-20, 255, cv2.THRESH_BINARY)[1]
 
         # print(path, np.mean(contour), np.mean(contour[contour>100]))
+
+        if color:
+            colorful = cv2.imread(path, cv2.IMREAD_COLOR)
+            colorful = cv2.resize(
+                colorful, (int(colorful.shape[1]*ratio), int(colorful.shape[0]*ratio)),
+                interpolation=cv2.INTER_AREA
+            )
+            return [contour, colorful]
 
         return contour
 
