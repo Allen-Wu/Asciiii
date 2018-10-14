@@ -43,12 +43,6 @@ git clone git@github.com:Allen-Wu/AsciiStyleConvertor.git
 
 ### Setup
 
-- quired libraries
-
-```
-pip install -r requirements.txt
-```
-
 - Install required libraries
 
 ```
@@ -59,7 +53,7 @@ pip install -r requirements.txt
 
 ```
 python main.py -h
-usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g]
+usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g] [-c]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -69,6 +63,7 @@ optional arguments:
   -e ETA, --eta ETA     hyper-parameter for ascii matching
   -li, --light          use a small set of ascii with high frequenty
   -g, --gif             generate a real-time gif with specific duration
+  -c, --color           colorful mode
 
 ```
 
