@@ -45,7 +45,7 @@ def img_to_ascii(ascii_candidate, img_matrix, return_flag=False, color=False, co
             id_max = ascii_candidate.hamming_match(sub_matrix, True)
             if color:
                 color_matrix = colorful[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col), :]
-                b, g, r = [np.mean(color_matrix[:, :, i]) for i in range(3)]
+                b, g, r = [int(np.mean(color_matrix[:, :, i])) for i in range(3)]
                 row_list.append('\033[38;5;{}m'.format(r, g, b) + str(chr(id_max)) + '\033[0m')
             else:
                 row_list.append(chr(id_max))
