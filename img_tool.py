@@ -5,9 +5,48 @@ import numpy as np
 import imageio
 from PIL import Image
 import cv2
+import scipy
+import time
+from grid_matching import zero_padding, img_to_ascii
 
-ASCII_ROOT = "ascii/"
+ASCII_ROOT = "ascii/light"
 
+# Generate a real time gif with specific duration
+def real_time_gif(duration, filename, ascii_mapper, sketcher):
+    cap = cv2.VideoCapture(0)
+    start_time = time.time()
+    curr_time = time.time()
+    img_list = []
+    ascii_img_list = []
+    gif_name = filename
+    temp_folder = 'temp_gif'
+    temp_gif = 'temp_real'
+
+    while (curr_time - start_time) < duration:
+        _, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        img_list.append(gray)
+        curr_time = time.time()
+
+    cap.release()
+
+    for x in img_list:
+        edged_image = sketcher.convert('', frame=x)
+        row, col = ascii_mapper.get_shape()
+
+        # Enlarge the image twice and padding
+        # edge_detected = cv2.resize(edge_detected, (0, 0), fx=1, fy=1)
+        padded_img = zero_padding(edged_image, row, col)
+        padded_img = np.flip(padded_img, axis=1)
+        res = img_to_ascii(ascii_mapper, padded_img, return_flag=True)
+        ascii_img_list.append(ascii_to_img(res, save_flag=False))
+
+    imageio.mimsave('{}.gif'.format(temp_gif), ascii_img_list)
+    extractFrames('{}.gif'.format(temp_gif), temp_folder)
+    GenerateGif(temp_folder, '{}.gif'.format(gif_name), duration * 100)
+    # Remove temporary files
+    os.system('rm {} -rf'.format(temp_folder))
+    os.system('rm {}.gif'.format(temp_gif))
 
 def gradient_intensity_and_orientation(in_img):
     """
@@ -68,7 +107,7 @@ def GenerateGif(in_folder, out_gif, duration=10):
     writer.close()
 
 
-def ascii_to_img(ascii):
+def ascii_to_img(ascii, save_flag=True):
     """
     Convert an ascii numpy to a image numpy.
     :param ascii: an ascii numpy
@@ -76,9 +115,12 @@ def ascii_to_img(ascii):
     """
     rows = []
     for row in ascii:
-        imgs = [Image.open(join(ASCII_ROOT, "{}.png".format(ord(c)))) for c in row]
+        imgs = [Image.open(join(ASCII_ROOT, "{}.png".format(int(c)))) for c in row]
         rows += [np.hstack((np.asarray(i) for i in imgs))]
 
     image = np.vstack((np.asarray(r) for r in rows))
-    image = Image.fromarray(image)
-    image.save('ascii.jpg')
+    if save_flag:
+        image = Image.fromarray(image)
+        image.save('ascii.jpg')
+    else:
+        return image

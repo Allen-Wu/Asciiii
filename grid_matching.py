@@ -30,23 +30,28 @@ def zero_padding(img_matrix, grid_row, grid_col):
     return img_matrix
 
 # Transfer edge-detected image to ascii format
-def img_to_ascii(ascii_candidate, img_matrix):
+def img_to_ascii(ascii_candidate, img_matrix, return_flag=False):
     grid_row, grid_col = ascii_candidate.get_shape()
     output_row = int(img_matrix.shape[0] / grid_row)
     output_col = int(img_matrix.shape[1] / grid_col)
     char_list = []
+    res = np.zeros((output_row, output_col))
     for i in range(output_row):
         row_list = []
         for j in range(output_col):
             sub_matrix = img_matrix[(i*grid_row):(i*grid_row+grid_row), (j*grid_col):(j*grid_col+grid_col)]
             id_max = ascii_candidate.hamming_match(sub_matrix, True)
             row_list.append(chr(id_max))
+            if return_flag:
+                res[i][j] = id_max
         char_list.append(row_list)
     output_string = ''
     for x in char_list:
         for y in x:
             output_string += y
         output_string += '\n'
+    if return_flag:
+        return res
     clear()
     print(output_string)
 

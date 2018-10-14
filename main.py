@@ -9,6 +9,7 @@ import time
 import signal
 import sys
 import util
+from img_tool import real_time_gif
 
 def process(sketcher, ascii_mapper, path):
     edged_image = sketcher.convert(path)
@@ -55,6 +56,9 @@ def run(**args_dict):
         # Real time image to ascii streaming
         real_time_streaming(ascii_mapper, sketcher)
 
+    elif args_dict['gif']:
+        real_time_gif(3, 'result', ascii_mapper, sketcher)
+
     else:
         # Testing for the images in data folder
         for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
@@ -70,6 +74,7 @@ def main():
     parser.add_argument('-v', '--video', action='store_true', default=False, help='real-time video mode, need your camera')
     parser.add_argument('-e', '--eta', action='store', type=float, default=0.15, help='hyper-parameter for ascii matching')
     parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty')
+    parser.add_argument('-g', '--gif', action='store_true', default=False, help='generate a real-time gif with specific duration')
     args = parser.parse_args()
     args_dict = vars(args)
 
