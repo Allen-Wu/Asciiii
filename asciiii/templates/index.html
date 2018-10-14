@@ -41,7 +41,8 @@
           <div class="card">
             <div class="card-body">
               {% if ifcontent %}
-                <img src="{{ original }}" alt="{{ original }}">
+                <img style="width:500px" src="{{ url_for('.show', filename=original) }}" alt="{{ original }}">
+
               {% else %}
                 <img src="/static/images/sample.png" alt="sample-image">
               {% endif %}

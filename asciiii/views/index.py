@@ -1,6 +1,6 @@
 import flask
 import asciiii
-from asciiii import model, util
+from asciiii import model
 
 
 @asciiii.app.route('/', methods=['GET', 'POST'])
@@ -19,5 +19,6 @@ def show_index():
         return flask.render_template("index.html", **context)
     res = model.create_ascii(photo, lines, eta, color, light)
     print("-----", res)
-    context = {'ifcontent': True, 'ifdebug': False, 'original': '/var/uploads/' + photo, 'ascii': res}
+    context = {'ifcontent': True, 'ifdebug': False, 'original': photo, 'ascii': res}
     return flask.render_template("index.html", **context)
+
