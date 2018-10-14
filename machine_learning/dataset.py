@@ -28,6 +28,8 @@ class AsciiSketchDataset(Dataset):
                 self.data += [temp[130:150]]
         self.data = torch.cat(self.data, dim=0)
         mean = 0.1910
+        # tensor(156.9250, dtype=torch.float64)
+        # tensor(156.4212, dtype=torch.float64)
         self.transform = transforms.Compose([
             lambda x: (x - mean),
             lambda x: x.view(-1),  # Flatten
