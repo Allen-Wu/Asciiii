@@ -1,6 +1,7 @@
 import argparse
 from asciiii.engine.core import run
 
+
 def main():
     # Parse arguments
     parser = argparse.ArgumentParser()

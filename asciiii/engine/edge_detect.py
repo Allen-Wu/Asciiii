@@ -138,7 +138,7 @@ class Sketch:
 
             return contour, colorful
 
-        return contour, None
+        return contour
 
 
 if __name__ == '__main__':

@@ -12,7 +12,11 @@ from asciiii import util
 
 
 def process(sketcher, ascii_mapper, path, color):
-    edged_image, colorful = sketcher.convert(path, color=color)
+    if color:
+        edged_image, colorful = sketcher.convert(path, color=color)
+    else:
+        edged_image = sketcher.convert(path, color=color)
+        colorful = None
     row, col = ascii_mapper.get_shape()
     padded_img = zero_padding(edged_image, row, col)
     return img_to_ascii(ascii_mapper, padded_img, color=color, colorful=colorful)
