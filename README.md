@@ -5,7 +5,7 @@
 
 [Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and outputs the ASCII-style text strings depicted by the edge information of the input. 
 
-<img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/dataset.gif" width="300">
+<img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/dataset.gif" width="300">
 
 ## Table of Contents
 
@@ -79,10 +79,10 @@ optional arguments:
 
 Static Image               |  Gif
 :-------------------------:|:-------------------------:
-<img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/static_img.png" width="450">  |  <img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/stream_gif.gif" width="450">
+<img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/static_img.png" width="450">  |  <img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/stream_gif.gif" width="450">
 
 #### Colored Edges
-![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/data/demo/color.jpg)
+![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/color.jpg)
 
 #### Real-time Streaming
 
@@ -115,7 +115,7 @@ The baseline method is using Hamilton distance to measure the similarity between
 We also print windnow and compare the prediction of two algorithms and find the machine learning model makes no more sense. 
 In the following picture, "target" corresponds to Hamilton algorithm and prediction corresponds to machine learning. 
 
-![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/machine_learning/model_cmp/12.png)
+![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/12.png)
 
 ## Packages
 
