@@ -1,9 +1,9 @@
 # Asciiii
 
-[![Made in MHacks](https://img.shields.io/badge/Made%20in-MHacks11-d41359.svg?style=flat)](https://mhacks.org)
+[![Made in MHacks](http://img.shields.io/badge/Made%20in-MHacks11-d41359.svg?style=flat)](https://mhacks.org)
 [![Build Status](https://travis-ci.org/Allen-Wu/AsciiStyleConvertor.svg?branch=master)](https://travis-ci.org/Allen-Wu/AsciiStyleConvertor)
 
-[Asciiii](https://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and outputs the ASCII-style text strings depicted by the edge information of the input. 
+[Asciiii](http://asciiii.com) is an ASCII style converter made during [MHacks11](https://mhacks.org). It supports image (jpg/jpeg/png/gif) inputs and outputs the ASCII-style text strings depicted by the edge information of the input. 
 
 <img src="https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/dataset.gif" width="300">
 
@@ -51,14 +51,14 @@ git clone git@github.com:Allen-Wu/AsciiStyleConvertor.git
 - Install required libraries
 
 ```
-pip install -r requirements.txt
+pip install -e .
 ```
 
 - Run the program in terminal
 
 ```
-python main.py -h
-usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g]
+python asciiii/endpoint.py -h
+usage: endpoint.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g] [-c]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -68,12 +68,14 @@ optional arguments:
   -e ETA, --eta ETA     hyper-parameter for ascii matching
   -li, --light          use a small set of ascii with high frequenty
   -g, --gif             generate a real-time gif with specific duration
+  -c, --color           colorful mode
 
 ```
 
 ## Demo
 
 #### Web Application
+![alt text](https://github.com/Allen-Wu/Asciiii/blob/master/asciiii/data/demo/web.png)
 
 #### Static Images and Gif
 
@@ -85,6 +87,7 @@ Static Image               |  Gif
 ![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/color.jpg)
 
 #### Real-time Streaming
+[YouTube Video](https://youtu.be/psUTc6W8V98)
 
 
 ## Optimization Attempts
