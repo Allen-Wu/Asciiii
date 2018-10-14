@@ -43,12 +43,6 @@ git clone git@github.com:Allen-Wu/AsciiStyleConvertor.git
 
 ### Setup
 
-- quired libraries
-
-```
-pip install -r requirements.txt
-```
-
 - Install required libraries
 
 ```
@@ -59,7 +53,7 @@ pip install -r requirements.txt
 
 ```
 python main.py -h
-usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g]
+usage: main.py [-h] [-f FILE] [-l LINE] [-v] [-e ETA] [-li] [-g] [-c]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -69,6 +63,7 @@ optional arguments:
   -e ETA, --eta ETA     hyper-parameter for ascii matching
   -li, --light          use a small set of ascii with high frequenty
   -g, --gif             generate a real-time gif with specific duration
+  -c, --color           colorful mode
 
 ```
 
@@ -84,14 +79,19 @@ optional arguments:
 
 
 ## Optimization Attempts
+The bottleneck of the algorithm mainly lies in the computation process of determining the proper ascii character for each subpart of the input image. The computation process focuses on the comparing similarity of two grids based on the Hamming Distance. We try to optimize this process by different approaches.
+
 
 #### Heuristics
+Several heuristics methods can be used to directly map one subpart of image into an ascii character. For example, if the average pixel value is lower than one low threshold, it can be directly mapped to a empty space character.
 
 #### Parallelism
 
 ##### Multi-threading
+We try using multi-threading module `threading` and assign one thread for each subpart computing. The best number of threads is between 8 and 10. However, the cost of creating thread is higher than expected, and the performance is worse than single thread.
 
 ##### Multi-processing
+Similar approach is used for multi-processing method, which is based on python module `Pool` module. However, the cost of creating separate process is also too high.
 
 
 #### Machine Learning
