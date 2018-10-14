@@ -14,7 +14,7 @@
   - [Setup](#setup)
 - [Demo](#demo) 
   - [Web Application](#web-application)
-  - [Static Images in Terminal and Gif](#static-images-in-terminal-and-gif)
+  - [Static Images and Gif](#static-images-and-gif)
   - [Colored Edges](#colored-edges)
   - [Real-time Streaming](#real-time-streaming)
 - [Optimization Attempts](#optimization-attempts)
@@ -75,9 +75,10 @@ optional arguments:
 
 #### Web Application
 
-#### Static Images in Terminal and Gif
+#### Static Images and Gif
 
 #### Colored Edges
+![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/data/demo/color.jpg)
 
 #### Real-time Streaming
 
