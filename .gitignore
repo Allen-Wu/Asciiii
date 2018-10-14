@@ -9,3 +9,5 @@ env/
 var/
 venv/
 .idea/
+machine_learning/save
+
