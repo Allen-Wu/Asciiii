@@ -3,31 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Asciiii - Ascii Style Converter</title>
-  <!-- <style>
-  input[type=submit] {
-      background-color: #2f2f2f;
-      border: none;
-      color: white;
-      padding: 12px 28px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 20px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 8px;
-  }
-  input[type=submit]:hover {
-      background-color: #808080;
-  }
-  input[type=text] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      box-sizing: border-box;
-  }
-  </style> -->
+   <style>
+   body{
+    font-family: 'Open Sans',serif;
+ }
+  </style>
   <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
   <link rel="icon" href="/static/images/favicon.png" type="image/x-icon"/>
 </head>
 <body>
@@ -80,10 +62,11 @@
   {% if ifcontent %}
     <h4>----------</h4>
     <h3>Original Image:</h3>
+    <h4>{{ origin }}</h4>
     <img src="{{ original }}" alt="{{ original }}">
     <!-- <img src='/results/{{ ascii }}' alt='{{ ascii }}'> -->
     <h3>Asciified Text:</h3>
-    <p>{{ ascii }}</p>
+    <p style="white-space: pre-wrap;font-family:monospace;"">{{ ascii }}</p>
   {% endif %}
 
   {% if ifdebug %}

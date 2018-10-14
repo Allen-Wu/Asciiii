@@ -1,6 +1,9 @@
+import sys
 import flask
 import asciiii
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
+import util
 
 @asciiii.app.route('/', methods=['GET', 'POST'])
 def show_index():
@@ -17,5 +20,6 @@ def show_index():
         return flask.render_template("index.html", **context)
     print(photo, lines, eta, color, light)
     res = asciiii.model.create_ascii(photo, lines, eta, color, light)
-    context = {'ifcontent': True, 'ifdebug' : False, 'origin': photo, 'ascii': res}
+    print("-----", res)
+    context = {'ifcontent': True, 'ifdebug' : False, 'origin': util.get_abs_path('server/var/uploads/' + photo), 'ascii': res}
     return flask.render_template("index.html", **context)

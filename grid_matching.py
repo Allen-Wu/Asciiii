@@ -12,6 +12,7 @@ def clear():
     else:
         _ = os.system('clear')
 
+
 # Padding zeros for input image to be right size
 def zero_padding(img_matrix, grid_row, grid_col):
     row, col = img_matrix.shape
@@ -28,6 +29,7 @@ def zero_padding(img_matrix, grid_row, grid_col):
         padding_cols = np.ones((resize_row, resize_col - col)) * 255
         img_matrix = np.hstack((img_matrix, padding_cols))
     return img_matrix
+
 
 # Transfer edge-detected image to ascii format
 def img_to_ascii(ascii_candidate, img_matrix, return_flag=False):
@@ -54,6 +56,7 @@ def img_to_ascii(ascii_candidate, img_matrix, return_flag=False):
         return res
     clear()
     print(output_string)
+    return output_string
 
 
 def img_to_ascii_multi(ascii_candidate, img_matrix):
