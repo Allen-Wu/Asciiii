@@ -9,7 +9,13 @@ from asciiii import util
 
 
 def create_ascii(photo, lines, eta, color, light):
-    config = {'file': util.get_abs_path('var/uploads/' + photo), 'line': int(lines), 'eta': float(eta), 'color': color, 'light': light}
+    config = {
+        'file': util.get_abs_path('var/uploads/' + photo),
+        'line': int(lines),
+        'eta': float(eta),
+        'color': color == '1',
+        'light': light == '1'
+    }
     res = run(**config)
     return res
 

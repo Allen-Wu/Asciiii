@@ -13,12 +13,7 @@ from asciiii import util
 
 
 def process(sketcher, ascii_mapper, path, color):
-    colorful = None
-    if color:
-        edged_image, colorful = sketcher.convert(path, color=color)
-    else:
-        edged_image = sketcher.convert(path)
-        colorful = None
+    edged_image, colorful = sketcher.convert(path, color=color)
     row, col = ascii_mapper.get_shape()
     padded_img = zero_padding(edged_image, row, col)
     return img_to_ascii(ascii_mapper, padded_img, color=color, colorful=colorful)
@@ -53,14 +48,12 @@ def real_time_streaming(ascii_mapper, sketcher):
 
 def run(**args_dict):
     im_path = args_dict['file']
-    line_number = args_dict['line']
-    color = args_dict['color']
 
     ascii_mapper = ASCII(eta=args_dict['eta'], light=args_dict['light'])
-    sketcher = Sketch(line_number)
+    sketcher = Sketch(args_dict['line'])
 
     if im_path:
-        return process(sketcher, ascii_mapper, im_path, color)
+        return process(sketcher, ascii_mapper, im_path, args_dict['color'])
 
     elif args_dict['video']:
         # Real time image to ascii streaming
@@ -72,7 +65,7 @@ def run(**args_dict):
     else:
         # Testing for the images in data folder
         for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
-            process(sketcher, ascii_mapper, im_path, color)
+            process(sketcher, ascii_mapper, im_path, args_dict['color'])
 
 
 def main():

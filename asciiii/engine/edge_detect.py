@@ -136,9 +136,9 @@ class Sketch:
             )
             colorful = cv2.GaussianBlur(colorful, (3, 3), 0)
 
-            return [contour, colorful]
+            return contour, colorful
 
-        return contour
+        return contour, None
 
 
 if __name__ == '__main__':

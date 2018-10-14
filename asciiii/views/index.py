@@ -16,7 +16,6 @@ def show_index():
     if photo == "":
         context = {'ifcontent': False, 'ifdebug': True}
         return flask.render_template("index.html", **context)
-    print(photo, lines, eta, color, light)
     res = model.create_ascii(photo, lines, eta, color, light)
     print("-----", res)
     context = {'ifcontent': True, 'ifdebug': False, 'origin': util.get_abs_path('var/uploads/' + photo), 'ascii': res}

@@ -4,6 +4,7 @@ from asciiii.engine.ascii import ASCII
 from itertools import product, repeat
 from multiprocessing import Pool
 
+
 # Clear output screen
 def clear():
     # For Windows
@@ -33,7 +34,6 @@ def zero_padding(img_matrix, grid_row, grid_col):
 
 # Transfer edge-detected image to ascii format
 def img_to_ascii(ascii_candidate, img_matrix, return_flag=False, color=False, colorful=None):
-
     grid_row, grid_col = ascii_candidate.get_shape()
     output_row = int(img_matrix.shape[0] / grid_row)
     output_col = int(img_matrix.shape[1] / grid_col)
@@ -83,5 +83,5 @@ def img_to_ascii_multi(ascii_candidate, img_matrix):
         for y in x:
             output_string += chr(y)
         output_string += '\n'
-    # clear()
+    clear()
     print(output_string)
