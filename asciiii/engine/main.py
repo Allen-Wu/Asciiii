@@ -2,17 +2,18 @@ import argparse
 import glob
 import cv2
 import numpy as np
-from engine.grid_matching import zero_padding, img_to_ascii
-from engine.edge_detect import Sketch
-from engine.ascii import ASCII
+from asciiii.engine.grid_matching import zero_padding, img_to_ascii
+from asciiii.engine.edge_detect import Sketch
+from asciiii.engine.ascii import ASCII
+from asciiii.engine.img_tool import real_time_gif
 import time
 import signal
 import sys
-from engine import util
-from engine.img_tool import real_time_gif
+from asciiii import util
 
 
 def process(sketcher, ascii_mapper, path, color):
+    colorful = None
     if color:
         edged_image, colorful = sketcher.convert(path, color=color)
     else:
@@ -71,7 +72,6 @@ def run(**args_dict):
         # Testing for the images in data folder
         for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
             process(sketcher, ascii_mapper, im_path, color)
-
 
 
 def main():

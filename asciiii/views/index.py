@@ -1,17 +1,14 @@
-import sys
 import flask
-import engine
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../")))
-from engine import util
+import asciiii
+from asciiii import model, util
 
 
-@engine.app.route('/', methods=['GET', 'POST'])
+@asciiii.app.route('/', methods=['GET', 'POST'])
 def show_index():
     if flask.request.method == 'GET':
         context = {'ifcontent': False, 'ifdebug': False}
         return flask.render_template("index.html", **context)
-    photo = engine.model.save_file(flask.request.files['file'])
+    photo = model.save_file(flask.request.files['file'])
     lines = flask.request.form['lines']
     eta = flask.request.form['etaRange']
     color = flask.request.form['color']
@@ -20,7 +17,7 @@ def show_index():
         context = {'ifcontent': False, 'ifdebug': True}
         return flask.render_template("index.html", **context)
     print(photo, lines, eta, color, light)
-    res = engine.model.create_ascii(photo, lines, eta, color, light)
+    res = model.create_ascii(photo, lines, eta, color, light)
     print("-----", res)
-    context = {'ifcontent': True, 'ifdebug' : False, 'origin': util.get_abs_path('server/var/uploads/' + photo), 'ascii': res}
+    context = {'ifcontent': True, 'ifdebug': False, 'origin': util.get_abs_path('var/uploads/' + photo), 'ascii': res}
     return flask.render_template("index.html", **context)

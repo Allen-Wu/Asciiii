@@ -1,9 +1,8 @@
 """An Ascii Style Picture Converter."""
-
 import flask
 
 app = flask.Flask(__name__)
-app.config.from_object('engine.config')
+app.config.from_object('asciiii.config')
 
 # Overlay settings read from file specified by environment variable. This is
 # useful for using different on development and production machines.
@@ -14,5 +13,12 @@ app.config.from_envvar('ASCIIII_SETTINGS', silent=True)
 # circular import, which is naughty, but Flask was designed that way.
 # (Reference http://flask.pocoo.org/docs/0.12/patterns/packages/)  We're
 # going to tell pylint and pycodestyle to ignore this coding style violation.
-import engine.views
-import engine.model
+
+import asciiii.views
+import asciiii.model
+from asciiii import util
+import os
+
+directory = util.get_abs_path('var/uploads')
+if not os.path.exists(directory):
+    os.makedirs(directory)

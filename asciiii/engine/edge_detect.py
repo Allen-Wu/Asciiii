@@ -7,6 +7,7 @@ import imageio
 # THRESHOLD_LOW = 220
 # THRESHOLD_HIGH = 255
 
+
 def canny_custom(im_path):
     """
     deprecated canny edge detection implementation

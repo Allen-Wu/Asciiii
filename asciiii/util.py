@@ -2,6 +2,7 @@ import os
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 def get_base_dir():
     return ROOT_DIR
 

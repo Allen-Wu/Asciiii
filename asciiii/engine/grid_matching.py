@@ -1,6 +1,6 @@
 import numpy as np
 import os
-from ascii import ASCII
+from asciiii.engine.ascii import ASCII
 from itertools import product, repeat
 from multiprocessing import Pool
 
@@ -33,7 +33,7 @@ def zero_padding(img_matrix, grid_row, grid_col):
 
 # Transfer edge-detected image to ascii format
 def img_to_ascii(ascii_candidate, img_matrix, return_flag=False, color=False, colorful=None):
-    print(img_matrix.shape, colorful.shape)
+    # print(img_matrix.shape, colorful.shape)
     grid_row, grid_col = ascii_candidate.get_shape()
     output_row = int(img_matrix.shape[0] / grid_row)
     output_col = int(img_matrix.shape[1] / grid_col)
