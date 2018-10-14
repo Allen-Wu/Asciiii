@@ -66,7 +66,7 @@ optional arguments:
   -l LINE, --line LINE  desired image width
   -v, --video           real-time video mode, need your camera
   -e ETA, --eta ETA     hyper-parameter for ascii matching
-  -li, --light          use a small set of ascii with high frequenty
+  -li, --light          use a small set of ascii with high frequency
   -g, --gif             generate a real-time gif with specific duration
   -c, --color           colorful mode
 
@@ -87,7 +87,7 @@ Static Image               |  Gif
 ![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/color.jpg)
 
 #### Real-time Streaming
-[YouTube Video](https://youtu.be/psUTc6W8V98)
+[![Camera Demo](https://img.youtube.com/vi/psUTc6W8V98/0.jpg)](https://youtu.be/psUTc6W8V98)
 
 
 ## Optimization Attempts
