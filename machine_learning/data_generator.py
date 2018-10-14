@@ -56,7 +56,7 @@ counter = defaultdict(int)
 disk = defaultdict(list)
 
 sketcher = Sketch(800)
-for path in glob.glob('data/result800/*'):
+for path in glob.glob('../data/result800/*'):
     edged_image = sketcher.convert(path)
     row, col = ascii_mapper.get_shape()
 
@@ -64,7 +64,7 @@ for path in glob.glob('data/result800/*'):
     img_to_ascii(ascii_mapper, padded_img, counter, index, disk)
 
 sketcher = Sketch(500)
-for path in glob.glob('data/result800/*'):
+for path in glob.glob('../data/result800/*'):
     edged_image = sketcher.convert(path)
     row, col = ascii_mapper.get_shape()
 
@@ -72,7 +72,7 @@ for path in glob.glob('data/result800/*'):
     img_to_ascii(ascii_mapper, padded_img, counter, index, disk)
 
 sketcher = Sketch(1000)
-for path in glob.glob('data/result800/*'):
+for path in glob.glob('../data/result800/*'):
     edged_image = sketcher.convert(path)
     row, col = ascii_mapper.get_shape()
 
@@ -86,11 +86,11 @@ label = 0
 for ch, arr in disk.items():
     temp = torch.tensor(arr)
     print(ch, temp.shape)
-    torch.save(temp, 'machine_learning/AsciiOri/ascii_img_{}.pt'.format(label))
+    torch.save(temp, 'AsciiOri/ascii_img_{}.pt'.format(label))
     label_to_char[label] = ch
     char_to_label[ch] = label
     label += 1
-    temp = torch.load('machine_learning/AsciiOri/ascii_img_{}.pt'.format(label-1))
+    temp = torch.load('AsciiOri/ascii_img_{}.pt'.format(label-1))
     print(temp)
 
 print(label_to_char)

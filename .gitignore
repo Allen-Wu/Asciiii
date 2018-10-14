@@ -10,3 +10,5 @@ var/
 venv/
 .idea/
 machine_learning/save
+machine_learning/AsciiSketch
+machine_learning/AsciiOri
