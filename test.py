@@ -1,5 +1,5 @@
 import unittest
-from asciiii.engine.main import run
+from asciiii.engine.core import run
 
 
 class TestBasics(unittest.TestCase):
