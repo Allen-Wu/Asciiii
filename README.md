@@ -30,8 +30,12 @@
   - [Server Packages](#server-packages)
   
 ## Getting Started
+There are two ways of accessing our project.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+- Visit our [website](http://asciiii.com)
+- Clone the repo and run it on your own machine
+
+These following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
