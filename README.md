@@ -109,6 +109,7 @@ The baseline method is using Hamilton distance to measure the similarity between
 
 We also print windnow and compare the prediction of two algorithms and find the machine learning model makes no more sense. 
 In the following picture, "target" corresponds to Hamilton algorithm and prediction corresponds to machine learning. 
+
 ![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/machine_learning/model_cmp/12.png)
 
 ## Packages
