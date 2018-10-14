@@ -51,7 +51,7 @@ git clone git@github.com:Allen-Wu/AsciiStyleConvertor.git
 - Install required libraries
 
 ```
-pip install -r requirements.txt
+pip install -e .
 ```
 
 - Run the program in terminal
