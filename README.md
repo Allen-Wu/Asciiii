@@ -13,21 +13,21 @@
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
 - [Demo](#demo) 
-  - Web Application
-  - Static and Gif Images in Terminal
-  - Colored Edges
-  - Real-time Streaming
+  - [Web Application](#web-application)
+  - [Static Images in Terminal and Gif](#static-images-in-terminal-and-gif)
+  - [Colored Edges](#colored-edges)
+  - [Real-time Streaming](#real-time-streaming)
 - [Optimization Attempts](#optimization-attempts)
-  - Heuristics
-  - Parallelism
-    - Mulit-threading
-    - Multi-processing
-  - Machine Learning
-    - MultiLayerPerceptron
-    - Covolutional Neural Networks
+  - [Heuristics](#heuristics)
+  - [Parallelism](#parallelism)
+    - [Mulit-threading](#multi-threading)
+    - [Multi-processing](#multi-processing)
+  - [Machine Learning](#machine-learning)
+    - [Multi-layer-perceptron](#multi-layer-perceptron)
+    - [Convolutional Neural Networks](#convolutional-neural-networks)
 - [Packages](#packages)
-  - Algorithm Packages
-  - Server Packages
+  - [Algorithm Packages](#algorithm-packages)
+  - [Server Packages](#server-packages)
   
 ## Getting Started
 
@@ -74,13 +74,46 @@ optional arguments:
 
 ## Demo
 
+#### Web Application
 
+#### Static Images in Terminal and Gif
+
+#### Colored Edges
+
+#### Real-time Streaming
+
+
+## Optimization Attempts
+
+#### Heuristics
+
+#### Parallelism
+
+##### Multi-threading
+
+##### Multi-processing
+
+
+#### Machine Learning
+
+##### Multi-layer-perceptron
+
+##### Convolutional Neural Networks
 
 ## Packages
 
 #### Algorithm Packages
-
-- 
-- 
+- numpy
+- scipy
+- opencv-python
+- imageio
+- PIL
+- shutil
+- matplotlib
+- torch
 
 #### Server Packages
+- flask
+- sh
+- setup
+- util
