@@ -24,7 +24,7 @@
     - [Multi-processing](#multi-processing)
   - [Machine Learning](#machine-learning)
     - [Multi-layer-perceptron](#multi-layer-perceptron)
-    - [Convolutional Neural Networks](#convolutional-neural-networks)
+    - [Machine-generated dataset](#machine-generated dataset)
 - [Packages](#packages)
   - [Algorithm Packages](#algorithm-packages)
   - [Server Packages](#server-packages)
