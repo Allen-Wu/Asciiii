@@ -7,6 +7,7 @@ import imageio
 # THRESHOLD_LOW = 220
 # THRESHOLD_HIGH = 255
 
+
 def canny_custom(im_path):
     """
     deprecated canny edge detection implementation
@@ -135,9 +136,9 @@ class Sketch:
             )
             colorful = cv2.GaussianBlur(colorful, (3, 3), 0)
 
-            return [contour, colorful]
+            return contour, colorful
 
-        return contour
+        return contour, None
 
 
 if __name__ == '__main__':

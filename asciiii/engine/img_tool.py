@@ -7,9 +7,10 @@ from PIL import Image
 import cv2
 import scipy
 import time
-from grid_matching import zero_padding, img_to_ascii
+from .grid_matching import zero_padding, img_to_ascii
 
 ASCII_ROOT = "ascii/light"
+
 
 # Generate a real time gif with specific duration
 def real_time_gif(duration, filename, ascii_mapper, sketcher):

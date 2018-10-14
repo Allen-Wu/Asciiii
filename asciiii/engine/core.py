@@ -1,29 +1,27 @@
-import argparse
 import glob
 import cv2
 import numpy as np
-from grid_matching import zero_padding, img_to_ascii
-from edge_detect import Sketch
-from ascii import ASCII
+from asciiii.engine.grid_matching import zero_padding, img_to_ascii
+from asciiii.engine.edge_detect import Sketch
+from asciiii.engine.ascii import ASCII
+from asciiii.engine.img_tool import real_time_gif
 import time
 import signal
 import sys
-import util
-from img_tool import real_time_gif
+from asciiii import util
+
 
 def process(sketcher, ascii_mapper, path, color):
-    if color:
-        edged_image, colorful = sketcher.convert(path, color=color)
-    else:
-        edged_image = sketcher.convert(path)
-        colorful = None
+    edged_image, colorful = sketcher.convert(path, color=color)
     row, col = ascii_mapper.get_shape()
     padded_img = zero_padding(edged_image, row, col)
     return img_to_ascii(ascii_mapper, padded_img, color=color, colorful=colorful)
 
+
 def sigterm_handler(_signo, _stack_frame):
     print('Gracefully shut down real time streaming.')
     sys.exit(0)
+
 
 def real_time_streaming(ascii_mapper, sketcher):
     # Set graceful interruption
@@ -46,16 +44,15 @@ def real_time_streaming(ascii_mapper, sketcher):
         end = time.time()
         print('fps: {:f}'.format(1 / (end - start)))
 
+
 def run(**args_dict):
     im_path = args_dict['file']
-    line_number = args_dict['line']
-    color = args_dict['color']
 
     ascii_mapper = ASCII(eta=args_dict['eta'], light=args_dict['light'])
-    sketcher = Sketch(line_number)
+    sketcher = Sketch(args_dict['line'])
 
     if im_path:
-        return process(sketcher, ascii_mapper, im_path, color)
+        return process(sketcher, ascii_mapper, im_path, args_dict['color'])
 
     elif args_dict['video']:
         # Real time image to ascii streaming
@@ -67,28 +64,4 @@ def run(**args_dict):
     else:
         # Testing for the images in data folder
         for im_path in glob.glob(util.get_abs_path('data/*.jpg')):
-            process(sketcher, ascii_mapper, im_path, color)
-
-
-
-def main():
-    # Parse arguments
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-f', '--file', action='store', type=str, help='input image file path')
-    parser.add_argument('-l', '--line', action='store', type=int, default=800, help='desired image width')
-    parser.add_argument('-v', '--video', action='store_true', default=False, help='real-time video mode, need your camera')
-    parser.add_argument('-e', '--eta', action='store', type=float, default=0.15, help='hyper-parameter for ascii matching')
-    parser.add_argument('-li', '--light', action='store_true', default=True, help='use a small set of ascii with high frequenty')
-    parser.add_argument('-g', '--gif', action='store_true', default=False, help='generate a real-time gif with specific duration')
-    parser.add_argument('-c', '--color', action='store_true', default=False, help='colorful mode')
-
-    args = parser.parse_args()
-    args_dict = vars(args)
-
-    run(**args_dict)
-
-
-
-
-if __name__ == '__main__':
-    main()
+            process(sketcher, ascii_mapper, im_path, args_dict['color'])

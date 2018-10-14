@@ -6,7 +6,7 @@ APPLICATION_ROOT = '/'
 # File Upload to var/uploads/
 UPLOAD_FOLDER = os.path.join(
     os.path.dirname(os.path.dirname(os.path.realpath(__file__))),
-    'var', 'uploads'
+    'asciiii', 'var', 'uploads'
 )
 
 ALLOWED_EXTENSIONS = set(['.png', '.jpg', '.jpeg', '.gif'])

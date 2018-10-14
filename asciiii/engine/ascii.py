@@ -2,7 +2,8 @@ import numpy as np
 import imageio
 import glob
 import os
-import util
+from asciiii import util
+
 
 class ASCII:
     """

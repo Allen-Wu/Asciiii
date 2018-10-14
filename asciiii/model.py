@@ -1,16 +1,21 @@
-import sys
 import os
 import shutil
 import tempfile
 import uuid
-import flask
 import asciiii
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-from main import run
-import util
+
+from asciiii.engine.core import run
+from asciiii import util
+
 
 def create_ascii(photo, lines, eta, color, light):
-    config = {'file': util.get_abs_path('server/var/uploads/' + photo), 'line': int(lines), 'eta': float(eta), 'color': color, 'light': light}
+    config = {
+        'file': util.get_abs_path('var/uploads/' + photo),
+        'line': int(lines),
+        'eta': float(eta),
+        'color': color == '1',
+        'light': light == '1'
+    }
     res = run(**config)
     return res
 
