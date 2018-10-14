@@ -6,6 +6,8 @@ from grid_matching import zero_padding, img_to_ascii
 from edge_detect import Sketch
 from ascii import ASCII
 import time
+import signal
+import sys
 
 IMAGE_WIDTH = 800
 
@@ -15,8 +17,14 @@ def process(sketcher, ascii_mapper, path):
     padded_img = zero_padding(edged_image, row, col)
     img_to_ascii(ascii_mapper, padded_img)
 
+def sigterm_handler(_signo, _stack_frame):
+    print('Gracefully shut down real time streaming.')
+    sys.exit(0)
 
 def real_time_streaming(ascii_mapper, sketcher):
+    # Set graceful interruption
+    signal.signal(signal.SIGINT, sigterm_handler)
+
     cap = cv2.VideoCapture(0)
 
     while True:
