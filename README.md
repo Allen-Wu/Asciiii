@@ -87,6 +87,7 @@ Static Image               |  Gif
 ![alt text](https://github.com/Allen-Wu/AsciiStyleConvertor/blob/master/asciiii/data/demo/color.jpg)
 
 #### Real-time Streaming
+[YouTube Video](https://youtu.be/psUTc6W8V98)
 
 
 ## Optimization Attempts
